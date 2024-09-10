@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="myApp">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulaire AngularJS</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<style>
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+
+<div ng-controller="FormulaireController">
+    <form>
+        <label for="a">A :</label>
+        <input type="text" id="a" ng-model="valeurs.a" ng-disabled="!edition"><br>
+        
+        <label for="b">B :</label>
+        <input type="text" id="b" ng-model="valeurs.b" ng-disabled="!edition"><br>
+        
+        <label for="c">C :</label>
+        <input type="text" id="c" ng-model="valeurs.c" ng-disabled="!edition"><br>
+        
+        <button type="button" ng-click="modifier()">Modifier</button>
+        <button type="button" ng-click="enregistrer()">Enregistrer</button>
+    </form>
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+
+    app.controller('FormulaireController', function($scope) {
+        $scope.valeurs = {
+            a: "",
+            b: "",
+            c: ""
+        };
+
+        // Fonction pour modifier les champs
+        $scope.modifier = function() {
+            $scope.edition = true;
+        };
+
+        // Fonction pour enregistrer les valeurs modifiées
+        $scope.enregistrer = function() {
+            $scope.edition = false;
+        };
+
+        // Initialisation
+        $scope.edition = false;
+    });
+</script>
+
+</body>
+</html>

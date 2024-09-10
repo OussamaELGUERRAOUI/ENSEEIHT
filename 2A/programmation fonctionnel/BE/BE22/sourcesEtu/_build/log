@@ -1,0 +1,136 @@
+# dune build
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Workspace root:
+# "C:\\Users\\elgue\\OneDrive\\Bureau\\SN\\2SN\\S7\\programmation
+# fonctionnel\\BE\\BE22\\sourcesEtu"
+# Auto-detected concurrency: 8
+$ C:\OCaml64\home\elgue\.opam\4.12.0+msvc64c\bin\ocamlc.opt.exe -config > C:\OCaml64\tmp\dune_5d4f7b_output
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; for_host = None
+#  ; fdo_target_exe = None
+#  ; build_dir = "default"
+#  ; toplevel_path =
+#      Some External "C:/OCaml64/home/elgue/.opam/4.12.0+msvc64c/lib/toplevel"
+#  ; ocaml_bin =
+#      External "C:\\OCaml64\\home\\elgue\\.opam\\4.12.0+msvc64c\\bin"
+#  ; ocaml =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\elgue\\.opam\\4.12.0+msvc64c\\bin\\ocaml.exe"
+#  ; ocamlc =
+#      External
+#        "C:\\OCaml64\\home\\elgue\\.opam\\4.12.0+msvc64c\\bin\\ocamlc.opt.exe"
+#  ; ocamlopt =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\elgue\\.opam\\4.12.0+msvc64c\\bin\\ocamlopt.opt.exe"
+#  ; ocamldep =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\elgue\\.opam\\4.12.0+msvc64c\\bin\\ocamldep.opt.exe"
+#  ; ocamlmklib =
+#      Ok
+#        External
+#          "C:\\OCaml64\\home\\elgue\\.opam\\4.12.0+msvc64c\\bin\\ocamlmklib.opt.exe"
+#  ; env =
+#      map
+#        { "DUNE_OCAML_HARDCODED" :
+#            "C:\\\\OCaml64\\\\home\\\\elgue\\\\.opam\\\\4.12.0+msvc64c\\lib"
+#        ; "DUNE_OCAML_STDLIB" :
+#            "C:/OCaml64/home/elgue/.opam/4.12.0+msvc64c/lib/ocaml"
+#        ; "DUNE_SOURCEROOT" :
+#            "C:\\Users\\elgue\\OneDrive\\Bureau\\SN\\2SN\\S7\\programmation fonctionnel\\BE\\BE22\\sourcesEtu"
+#        ; "INSIDE_DUNE" :
+#            "C:\\Users\\elgue\\OneDrive\\Bureau\\SN\\2SN\\S7\\programmation fonctionnel\\BE\\BE22\\sourcesEtu\\_build/default"
+#        ; "MANPATH" :
+#            "c:\\Users\\elgue\\OneDrive\\Bureau\\SN\\2SN\\S7\\programmation fonctionnel\\BE\\BE22\\sourcesEtu\\_build/install/default/bin"
+#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
+#            "c:\\Users\\elgue\\OneDrive\\Bureau\\SN\\2SN\\S7\\programmation fonctionnel\\BE\\BE22\\sourcesEtu\\_build/install/default/lib"
+#        ; "OCAMLPATH" :
+#            "c:\\Users\\elgue\\OneDrive\\Bureau\\SN\\2SN\\S7\\programmation fonctionnel\\BE\\BE22\\sourcesEtu\\_build/install/default/lib"
+#        ; "OCAMLTOP_INCLUDE_PATH" :
+#            "c:\\Users\\elgue\\OneDrive\\Bureau\\SN\\2SN\\S7\\programmation fonctionnel\\BE\\BE22\\sourcesEtu\\_build/install/default/lib/toplevel"
+#        }
+#  ; findlib_paths =
+#      [ External
+#          "C:\\\\OCaml64\\\\home\\\\elgue\\\\.opam\\\\4.12.0+msvc64c\\lib"
+#      ]
+#  ; arch_sixtyfour = true
+#  ; natdynlink_supported = true
+#  ; supports_shared_libraries = true
+#  ; ocaml_config =
+#      { version = "4.12.0"
+#      ; standard_library_default =
+#          "C:/cygwin/home/appveyor/.opam/4.12.0+msvc64c/lib/ocaml"
+#      ; standard_library =
+#          "C:/OCaml64/home/elgue/.opam/4.12.0+msvc64c/lib/ocaml"
+#      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
+#      ; ccomp_type = "msvc"
+#      ; c_compiler = "cl"
+#      ; ocamlc_cflags = [ "-nologo"; "-O2"; "-Gy-"; "-MD" ]
+#      ; ocamlc_cppflags = [ "-D_CRT_SECURE_NO_DEPRECATE" ]
+#      ; ocamlopt_cflags = [ "-nologo"; "-O2"; "-Gy-"; "-MD" ]
+#      ; ocamlopt_cppflags = [ "-D_CRT_SECURE_NO_DEPRECATE" ]
+#      ; bytecomp_c_compiler =
+#          [ "cl"
+#          ; "-nologo"
+#          ; "-O2"
+#          ; "-Gy-"
+#          ; "-MD"
+#          ; "-D_CRT_SECURE_NO_DEPRECATE"
+#          ]
+#      ; bytecomp_c_libraries = [ "advapi32.lib"; "ws2_32.lib"; "version.lib" ]
+#      ; native_c_compiler =
+#          [ "cl"
+#          ; "-nologo"
+#          ; "-O2"
+#          ; "-Gy-"
+#          ; "-MD"
+#          ; "-D_CRT_SECURE_NO_DEPRECATE"
+#          ]
+#      ; native_c_libraries = [ "advapi32.lib"; "ws2_32.lib"; "version.lib" ]
+#      ; native_pack_linker =
+#          [ "link"; "-lib"; "-nologo"; "-machine:AMD64"; "-out:" ]
+#      ; cc_profile = []
+#      ; architecture = "amd64"
+#      ; model = "default"
+#      ; int_size = 63
+#      ; word_size = 64
+#      ; system = "win64"
+#      ; asm = [ "ml64"; "-nologo"; "-Cp"; "-c"; "-Fo" ]
+#      ; asm_cfi_supported = false
+#      ; with_frame_pointers = false
+#      ; ext_exe = ".exe"
+#      ; ext_obj = ".obj"
+#      ; ext_asm = ".asm"
+#      ; ext_lib = ".lib"
+#      ; ext_dll = ".dll"
+#      ; os_type = "Win32"
+#      ; default_executable_name = "camlprog.exe"
+#      ; systhread_supported = true
+#      ; host = "x86_64-pc-windows"
+#      ; target = "x86_64-pc-windows"
+#      ; profiling = false
+#      ; flambda = false
+#      ; spacetime = false
+#      ; safe_string = true
+#      ; exec_magic_number = "Caml1999X029"
+#      ; cmi_magic_number = "Caml1999I029"
+#      ; cmo_magic_number = "Caml1999O029"
+#      ; cma_magic_number = "Caml1999A029"
+#      ; cmx_magic_number = "Caml1999Y029"
+#      ; cmxa_magic_number = "Caml1999Z029"
+#      ; ast_impl_magic_number = "Caml1999M029"
+#      ; ast_intf_magic_number = "Caml1999N029"
+#      ; cmxs_magic_number = "Caml1999D029"
+#      ; cmt_magic_number = "Caml1999T029"
+#      ; natdynlink_supported = true
+#      ; supports_shared_libraries = true
+#      ; windows_unicode = true
+#      }
+#  }

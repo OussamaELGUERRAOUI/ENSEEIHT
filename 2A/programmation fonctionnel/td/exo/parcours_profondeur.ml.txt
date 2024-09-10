@@ -1,0 +1,155 @@
+(* PARCOURS EN PROFONDEUR *)
+
+
+let parcours_profondeur G = let n=vect_length G in
+   let pi=make_vect n (-2) in
+   let rec visiter i= let l = ref G.(i) in
+      while(!l)<>[] do
+         let j=hd(!l)in
+         l := tl(!l);
+         if pi.(j)=(-2) then
+            begin
+            pi.(j)<-i;
+            visiter j
+            end
+      done in
+   for i=0 to (n-1) do
+      if pi.(i)=(-2) then
+         begin
+         pi.(i)<-(-1);
+         visiter i
+         end;
+   done;
+   pi;;
+
+let G1 = [|[3;4;1];[4];[5];[4];[];[1;4]|] ;;
+
+let G2 = [|[4;5;11];[2;4;8];[5;6;9];[2;6;13];[7];[8;12];[5];[];[7];[10;11];[];[];[9];[]|];;
+
+let G3 = [|[1];[2];[3];[0]|];;
+
+let G4 = [|[1;2];[];[1]|];;
+
+parcours_profondeur G1;;     
+
+parcours_profondeur G2;;     
+
+parcours_profondeur G3;;     
+
+parcours_profondeur G4;;     
+
+
+(* La même chose avec les dates de découverte et de traitement de chaque sommet *)
+
+let parcours_profondeur G = let n=vect_length G in
+   let pi=make_vect n (-2) in
+   let d=make_vect n 0 in
+   let f=make_vect n 0 in
+   let date = ref 1 in 
+   let rec visiter i= let l = ref G.(i) in
+      d.(i)<-(!date);
+      incr date;
+      while(!l)<>[] do
+      let j=hd(!l) in
+         l := tl(!l);
+         if pi.(j)=(-2) then
+           begin
+           pi.(j)<-i;
+           visiter j
+           end
+      done ;
+      f.(i)<-(!date);
+         incr date; in
+   for i=0 to (n-1) do
+      if pi.(i)=(-2) then
+         begin
+         pi.(i)<-(-1);
+         visiter i;
+         end;
+   done;
+   pi,d,f;;
+   
+parcours_profondeur G1;;
+
+parcours_profondeur G2;;
+
+
+
+(* Application au test d'acyclicité *)
+
+let est_acyclique G = let n=vect_length G in
+   let d=make_vect n 0 in
+   let f=make_vect n 0 in
+   let date = ref 1 in 
+   let rec visiter i= let l = ref G.(i) in
+      while(!l)<>[] do
+      let j=hd(!l) in
+         l := tl(!l);
+         match d.(j),f.(j) with
+         |0,_ -> d.(j)<-(!date);
+                 incr date;
+                 visiter j
+         |k,0 when k<d.(i) -> failwith "pb"  (* un cycle a été détecté *)
+         |_ -> ()
+      done ;
+      f.(i)<-(!date);
+         incr date; in
+   try
+      for i=0 to (n-1) do
+         if d.(i)=0 then
+            begin
+            d.(i)<-(!date);
+            incr date;
+            visiter i;
+            end;
+      done;
+      true                   (* si le parcours arrive à son terme, il n'y a pas de cycle *)
+   with Failure "pb" -> false;;    (* sinon, une exception est déclenchée *)
+   
+
+est_acyclique G1;;
+
+est_acyclique G2;;
+
+est_acyclique G3;;
+
+est_acyclique G4;;
+
+(* Application au tri topologique *)
+
+let tri_topologique G = let n=vect_length G in
+   let jamais_vu=make_vect n true in
+   let pile=ref [] in
+   let rec visiter i= let l = ref G.(i) in
+      while(!l)<>[] do
+         let j=hd(!l) in
+         l := tl(!l);
+         if jamais_vu.(j) then
+            begin
+            jamais_vu.(j)<-false;
+            visiter j
+            end
+      done;
+      pile := i::(!pile); in
+   for i=0 to (n-1) do
+      if jamais_vu.(i) then
+         begin
+         jamais_vu.(i)<-false;
+         visiter i;
+         end;
+   done;
+   !pile;;
+
+let G = [|[1;3];[2];[];[2];[];[6;7];[3;7];[];[7]|];;
+ 
+tri_topologique G1;;
+
+tri_topologique G2;;
+
+tri_topologique G4;;
+
+
+
+
+
+

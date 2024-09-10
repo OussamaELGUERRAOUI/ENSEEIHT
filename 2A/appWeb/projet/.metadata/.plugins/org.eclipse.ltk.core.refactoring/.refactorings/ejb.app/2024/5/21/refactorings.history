@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete element from project &apos;ejb.app&apos;&#x0D;&#x0A;- Original project: &apos;ejb.app&apos;&#x0D;&#x0A;- Original element: &apos;seassion.SeassionApp.java&apos;" description="Delete element" element1="/ejbModule&lt;seassion{SeassionApp.java" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1716679490373" subPackages="false" version="1.0"/>
+</session>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="uploadApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Excel File</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body ng-controller="uploadController">
+    <h1>Upload Excel File</h1>
+    <form ng-submit="uploadFile()">
+        <input type="file" id="file" name="file" file-model="myFile"/>
+        <button type="submit">Upload</button>
+    </form>
+</body>
+</html>

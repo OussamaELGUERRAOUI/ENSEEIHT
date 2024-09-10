@@ -1,0 +1,72 @@
+[comment encoding = UTF-8 /]
+[module main('http://www.eclipse.org/acceleo/mt/2.6.0', 'http://www.eclipse.org/acceleo/mt/2.6.0/core', 'http://www.eclipse.org/acceleo/mt/2.6.0/expressions', 'http://www.eclipse.org/acceleo/mt/2.6.0/statements', 'http://www.eclipse.org/acceleo/ui/acceleowizardmodel/3.1')/]
+[import fr::n7::simplepdl::toHTML::main::toHTML/]
+[import org::eclipse::acceleo::internal::compatibility::mtl::gen::mt2mtl/]
+[import org::eclipse::acceleo::internal::ide::ui::generators::buildProperties/]
+[import org::eclipse::acceleo::module::example::uml2java::helios::pomChild/]
+[import org::eclipse::acceleo::module::sample::common::projectManifest/]
+[import org::eclipse::acceleo::module::sample::main::acceleoJavaClassGenerator/]
+[import org::eclipse::acceleo::module::sample::main::acceleoModule/]
+[import org::eclipse::acceleo::module::sample::main::activator/]
+[import org::eclipse::acceleo::module::sample::main::antCompiler/]
+[import org::eclipse::acceleo::module::sample::main::antRunner/]
+[import org::eclipse::acceleo::module::sample::main::antRunnerTarget/]
+[import org::eclipse::acceleo::module::sample::main::dotProject/]
+[import org::eclipse::acceleo::module::sample::main::pom/]
+[import org::eclipse::acceleo::module::sample::main::pomFeature/]
+[import org::eclipse::acceleo::module::sample::main::pomMaven/]
+[import org::eclipse::acceleo::module::sample::main::pomUpdateSite/]
+[import org::eclipse::acceleo::module::sample::main::projectClasspath/]
+[import org::eclipse::acceleo::module::sample::main::projectSettings/]
+[import org::eclipse::acceleo::module::sample::test::main::acceleoCompiler/]
+
+
+[template public mainAcceleoMainClass(aAcceleoMainClass : AcceleoMainClass)]
+	
+	[comment @main /]
+	[aAcceleoMainClass.genAbstractAcceleoGenerator()/]
+	[aAcceleoMainClass.genAntCompiler(String, String)/]
+	[aAcceleoMainClass.genAntRunner(String, String)/]
+	[aAcceleoMainClass.genAntRunnerTarget(String, String)/]
+	
+[/template]
+[template public mainAcceleoModule(aAcceleoModule : AcceleoModule)]
+	
+	[comment @main /]
+	[aAcceleoModule.genAcceleoModule()/]
+	
+[/template]
+[template public mainAcceleoPom(aAcceleoPom : AcceleoPom)]
+	
+	[comment @main /]
+	[aAcceleoPom.genPom(String)/]
+	[aAcceleoPom.genPom(String)/]
+	[aAcceleoPom.genPomFeature(String)/]
+	[aAcceleoPom.genPom()/]
+	[aAcceleoPom.genPomUpdateSite(String)/]
+	
+[/template]
+[template public mainAcceleoProject(aAcceleoProject : AcceleoProject)]
+	
+	[comment @main /]
+	[aAcceleoProject.generateElement()/]
+	[aAcceleoProject.genActivator()/]
+	[aAcceleoProject.genBuildProperties()/]
+	[aAcceleoProject.generateElement()/]
+	[aAcceleoProject.genProjectClassPath()/]
+	[aAcceleoProject.genManifestMF()/]
+	[aAcceleoProject.genProjectSettings()/]
+	
+[/template]
+[template public mainOclAny(aOclAny : OclAny)]
+	
+	[comment @main /]
+	[aOclAny.processToHTML()/]
+	
+[/template]
+[template public mainTemplate(aTemplate : Template)]
+	
+	[comment @main /]
+	[aTemplate.convertToModule()/]
+	
+[/template]

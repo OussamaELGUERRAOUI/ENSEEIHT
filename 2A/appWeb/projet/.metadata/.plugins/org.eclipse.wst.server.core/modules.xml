@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modules>
+  <module moduleId="org.eclipse.jst.jee.server:azweb" serverId="WildFly 23.0 Runtime Server1716685427974"/>
+  <module moduleId="org.eclipse.jst.jee.server:annuaireAngularJS" serverId="Deploy Only"/>
+</modules>

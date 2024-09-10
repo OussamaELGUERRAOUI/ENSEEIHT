@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="petrinet" nsURI="http://simplepdl" nsPrefix="simplepdl">
+  <eClassifiers xsi:type="ecore:EClass" name="PetriNet">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="petrinetelement" upperBound="-1"
+        eType="#//PetriNetElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PetriNetElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="petrinet" lowerBound="1"
+        eType="#//PetriNet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Node" abstract="true" eSuperTypes="#//PetriNetElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkToTarget" upperBound="-1"
+        eType="#//Arc" eOpposite="#//Arc/target"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="linkToSource" upperBound="-1"
+        eType="#//Arc" eOpposite="#//Arc/source"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//Node"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Place" eSuperTypes="#//Node">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="jeton" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ArcKind">
+    <eLiterals name="normal"/>
+    <eLiterals name="read" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Arc" eSuperTypes="#//PetriNetElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="weight" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" eType="#//ArcKind"
+        defaultValueLiteral="normal"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Node"
+        eOpposite="#//Node/linkToSource"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//Node"
+        eOpposite="#//Node/linkToTarget"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" eType="#//ArcDirection"
+        defaultValueLiteral="P2T"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ArcDirection">
+    <eLiterals name="T2P"/>
+    <eLiterals name="P2T" value="1"/>
+  </eClassifiers>
+</ecore:EPackage>

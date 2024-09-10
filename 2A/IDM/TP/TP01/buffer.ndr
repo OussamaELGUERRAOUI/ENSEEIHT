@@ -1,0 +1,31 @@
+t 75.0 360.0 LM 0 w n
+t 25.0 210.0 MM 0 w n
+t 110.0 75.0 MJ 0 w n
+t 270.0 60.0 JV 0 w n
+t 380.0 175.0 VS 0 w n
+t 360.0 330.0 SD 0 w n
+t 225.0 415.0 DL 0 w n
+p 145.0 405.0 Lundi 1 n
+p 35.0 290.0 Mardi 0 n
+p 55.0 130.0 Mercredi 0 n
+p 190.0 50.0 Jeudi 0 n
+p 340.0 105.0 Vendredi 0 n
+p 390.0 255.0 Samedi 0 n
+p 300.0 390.0 Dimanche 0 n
+e DL Lundi 1 n
+e Dimanche DL 1 n
+e SD Dimanche 1 n
+e Samedi SD 1 n
+e VS Samedi 1 n
+e Vendredi VS 1 n
+e JV Vendredi 1 n
+e Jeudi JV 1 n
+e MJ Jeudi 1 n
+e Mercredi MJ 1 n
+e MM Mercredi 1 n
+e Mardi MM 1 n
+e LM Mardi 1 n
+e Lundi LM 1 n
+h buffer
+
+

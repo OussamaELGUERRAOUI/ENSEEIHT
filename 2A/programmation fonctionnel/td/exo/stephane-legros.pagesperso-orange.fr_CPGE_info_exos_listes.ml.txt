@@ -1,0 +1,307 @@
+(* Listes *)
+
+(* Exercice 1 *)
+let rec longueur l = match l with
+   [] -> 0
+   |a::q -> 1+ longueur q;;
+   
+(* Exercice 2 *)
+let rec concatene_rec l1 l2 = match l1 with
+      [] -> l2
+      |a::l3 -> a::(concatene_rec l3 l2);;
+      
+      
+let concatene_ite l1 l2 = let p = ref (rev l1) and accu = ref l2 in 
+   while !p <> [] do
+       accu := (hd !p)::(!accu);
+       p := tl !p
+   done;
+   !accu;;
+ 
+concatene_rec [1;4;2] [5;12;6];;
+concatene_ite [1;4;2] [5;12;6];;  
+
+(* Exercice 3 *)
+
+let inverse_ite l = let p = ref l and accu = ref [] in
+   while !p <> [] do
+       accu := (hd !p)::(!accu);
+       p := tl !p
+   done;
+   !accu;;
+
+let inverse_rec l = 
+   let rec aux l1 l2 = match l1 with
+      [] -> l2
+      |a::l3 -> aux l3 (a::l2) in
+      aux l [];; 
+   
+inverse_ite [1;3;5;7;9];;        
+
+inverse_rec [1;3;5;7;9];; 
+
+(* Exercice 4 *)
+
+let rec recherche a l = match l with
+   [] -> false
+   |b::q -> if a=b then true else recherche a q;;
+   
+recherche 1 [5;7;3;4;2;1;3;6;8];;
+recherche 1 [5;7;3;4;2;3;6;8];;   
+   
+(* variante *)
+
+let rec recherche a l = match l with
+   [] -> false
+   |b::_ when a=b -> true
+   |_::q -> recherche a q;;
+
+recherche 1 [5;7;3;4;2;1;3;6;8];;
+recherche 1 [5;7;3;4;2;3;6;8];;  
+
+let rec rang a l = match l with
+   [] -> 0
+   |b::_ when a=b -> 1
+   |_::q -> match (rang a q) with
+               0 -> 0
+               |r -> r+1;;
+
+rang 1 [5;7;3;4;2;1;3;6;8];;
+rang 1 [5;7;3;4;2;3;6;8];;  
+
+(* Exercice 5 *)
+
+let rec insere_croissant a l = match l with
+   [] -> [a]
+   |b::_ when a<=b -> a::l
+   |b::q -> b::(insere_croissant a q);; 
+   
+let rec trier_liste l = match l with
+   [] -> []
+   |b::q -> insere_croissant b (trier_liste q);;
+   
+trier_liste [3;23;2;476;37];;
+trier_liste ["vincent";"francois";"paul"];;
+
+(* Exercice 6 *)
+
+let rec map f l = match l with
+   [] -> []
+   |b::q -> (f b)::(map f q);;
+
+map string_length ["vincent";"francois";"paul"];;
+
+(* Exercice 7 *)
+
+let rec crible l f = match l with
+   [] -> []
+   |b::q -> if (f b) then
+               b::(crible q f)
+            else
+               crible q f;;
+
+let f n = (n mod 2) = 0 ;;
+
+crible [1;2;3;4;5;6;7;8] f;;
+
+
+(* Tableaux *)
+
+(* Exercice 1 *)
+
+(* Une proc仕ure it屍ative *)
+let somme v = let s = ref v.(0) in
+   for i=1 to (vect_length v)-1 do
+      s := (!s)+v.(i)
+   done;
+   !s;;   
+
+(* Une proc仕ure r残ursive *)
+let somme_rec v = 
+   let rec aux i = 
+      if (i=vect_length v) then
+         0
+      else 
+         v.(i)+aux (i+1) in
+   aux 0;;   
+
+somme [|1;2;3;4;5;6;7;8;9|];;
+
+somme_rec [|1;2;3;4;5;6;7;8;9|];;
+
+(* Exercice 2 *)
+
+(* Une proc仕ure it屍ative *)
+let rang a v = let res = ref (-1) and l=ref 0 in
+   while (!res = (-1)) && (!l<>vect_length v) do
+      if a=v.(!l) then res:=(!l);
+      incr l
+   done;
+   !res;;
+
+rang 3 [|5;4;6;5;7;3;19|];;        
+rang 3 [|5;4;6;5;7;14;19|];;      
+
+(* Une proc仕ure r残ursive *)
+let rang_rec a v = 
+   let rec recherche i = 
+      if (i=vect_length v) then
+         -1
+      else 
+         if a=v.(i) then
+            i
+         else
+            recherche (i+1) in
+   recherche 0;;   
+
+rang_rec 3 [|5;4;6;5;7;3;19|];;       
+rang_rec 3 [|5;4;6;5;7;14;19|];; 
+
+(* Exercice 3 *)   
+let tri_bulle v =
+   let n = vect_length v in
+   let echange i j = let tampon=v.(i) in
+      v.(i) <- v.(j);
+      v.(j) <- tampon in
+   for i=0 to n-2 do
+      for j=0 to n-2-i do
+         if v.(j)>v.(j+1) then
+             echange j (j+1)
+      done;
+   done;;
+   
+let u = [|39;73;55;12;38;76;2;5;28|];;
+tri_bulle u;;
+u;;  
+
+(* Exercice 4 *)
+let fusion v1 v2 = 
+   let n1 = vect_length v1 and n2 = vect_length v2 in 
+   let v = make_vect (n1+n2) 0  and i1 = ref 0 and i2 = ref 0 and i =ref 0 in
+       while !i1<n1 & !i2<n2 do
+           if v1.(!i1)<v2.(!i2) then
+              begin
+              v.(!i) <- v1.(!i1);
+              incr i1;
+              incr i;
+              end
+           else
+              begin
+              v.(!i) <- v2.(!i2);
+              incr i2;
+              incr i;
+              end
+        done;
+        for j=(!i1) to n1-1 do
+           v.(!i)<- v1.(j);
+           incr i      
+        done;
+        for j=(!i2) to n2-1 do
+           v.(!i)<- v2.(j);
+           incr i      
+        done;
+        v;; 
+         
+fusion [|1;3;4;5;7|] [|2;4;6;7;8|] ;;  
+
+(* Exercice 5 *)
+let echange v i j = let tampon=v.(i) in
+      v.(i) <- v.(j);
+      v.(j) <- tampon;;
+
+
+
+let met_en_place v i j = let a=v.(i) and m = ref (i+1) and M=ref j in
+   while (!m)<(!M) do
+       if v.(!m)>a then
+          begin
+          echange v (!m) (!M);
+          decr M;
+          end
+       else
+          begin
+          v.((!m)-1) <- v.(!m);
+          incr m;
+          end
+    done;
+    if v.(!m)<a then
+       begin
+       v.((!m)-1)<-v.(!m);
+       v.(!m)<- a;
+       !m;
+       end
+    else
+       begin
+       v.((!m)-1)<-a;
+       (!m)-1
+       end;;         
+
+let v =[|1;4;10;2;5;12;3;7;14;17;39;8;9;12;15|];;
+met_en_place v 2 11 ;;
+
+v;;
+        
+let tri_rapide v = 
+   let rec tri i j =
+   if i<j then
+      begin
+      let k = met_en_place v i j in
+      tri i (k-1);
+      tri (k+1) j
+      end
+   else 
+      () in
+   tri 0 ((vect_length v)-1);;                   
+
+let v =[|1;4;10;2;5;12;3;7;14;17;39;8;9;12;15|];;
+             
+tri_rapide v;;          
+          
+v;;
+
+let v = [|"petrucciani";"mingus";"parker";"gillespie";"davis";"coltrane";"morgan";"brown";"adderley";"evans";"tatum";"hines";"waller"|];;
+
+tri_rapide v;;          
+          
+v;;
+
+
+     
+let tri_mediane_de_trois v = 
+   let rec tri i j = match j-i with
+   n when n<1 -> ()
+   |1 -> if v.(i)>v.(j) then echange v i j
+   |_ -> if v.(i)<=v.(i+1) then
+            begin 
+            if v.(i+1)<=v.(i+2) then
+               echange v i (i+1) 
+            else
+               if v.(i)<v.(i+2) then
+                  echange v i (i+2)
+            end
+         else
+            begin
+            if v.(i+2)<=v.(i+1) then
+               echange v i (i+1)
+            else
+               if v.(i+2)<v.(i) then
+                  echange v i (i+2)
+            end;
+         let k = met_en_place v i j in
+         tri i (k-1);
+         tri (k+1) j in
+     tri 0 ((vect_length v)-1);;      
+        
+                
+                        
+let v =[|1;4;10;2;5;12;3;7;14;17;39;8;9;12;15|];;
+              
+tri_mediane_de_trois v;;          
+    
+v;;     
+
+let v = [|"petrucciani";"mingus";"parker";"gillespie";"davis";"coltrane";"morgan";"brown";"adderley";"evans";"tatum";"hines";"waller"|];;
+
+tri_mediane_de_trois v;;          
+          
+v;;                 

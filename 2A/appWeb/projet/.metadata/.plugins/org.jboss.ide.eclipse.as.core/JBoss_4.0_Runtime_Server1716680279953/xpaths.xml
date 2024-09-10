@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xpaths>
+  <category name="Ports">
+    <query attribute="port" dir="${jboss_config_dir}" filePattern="**/*server.xml" name="JBoss Web" xpathPattern="//Server/Service[@name='jboss.web']/Connector[count(@sslProtocol) = 0 and (count(@protocol) = 0 or @protocol = 'HTTP/1.1')]"/>
+    <query attribute="mcast_port" dir="${jboss_config_dir}" name="CLUSTER UDP MCAST" xpathPattern="//server/mbean[@name='jboss:service=${jboss.partition.name:DefaultPartition}']/attribute[@name='PartitionConfig']/Config/UDP"/>
+    <query dir="${jboss_config_dir}" name="HA JNDI STUB" xpathPattern="//server/mbean[@name='jboss:service=HAJNDI']/attribute[@name='Port']"/>
+    <query dir="${jboss_config_dir}" name="Hypersonic" xpathPattern="//server/mbean[@name='jboss:service=Hypersonic']/attribute[@name='Port']"/>
+    <query dir="${jboss_config_dir}" filePattern="**/jboss-service.xml" name="JNDI" xpathPattern="//server/mbean[@name='jboss:service=Naming']/attribute[@name='Port']"/>
+    <query dir="${jboss_config_dir}" name="JNDI RMI" xpathPattern="//server/mbean[@name='jboss:service=Naming']/attribute[@name='RmiPort']"/>
+    <query dir="${jboss_config_dir}" name="JRMPA RMI OBJECT" xpathPattern="//server/mbean[@name='jboss:service=invoker,type=jrmpha']/attribute[@name='RMIObjectPort']"/>
+    <query dir="${jboss_config_dir}" name="JRMP Invoker" xpathPattern="//server/mbean[@name='jboss:service=invoker,type=jrmp']/attribute[@name='RMIObjectPort']"/>
+    <query dir="${jboss_config_dir}" name="Web Services" xpathPattern="//server/mbean[@name='jboss:service=WebService']/attribute[@name='Port']"/>
+    <query dir="${jboss_config_dir}" name="HA JNDI RMI" xpathPattern="//server/mbean[@name='jboss:service=HAJNDI']/attribute[@name='RmiPort']"/>
+    <query dir="${jboss_config_dir}" name="Pooled Invoker" xpathPattern="//server/mbean[@name='jboss:service=invoker,type=pooled']/attribute[@name='ServerBindPort']"/>
+  </category>
+</xpaths>

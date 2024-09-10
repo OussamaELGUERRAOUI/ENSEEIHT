@@ -1,0 +1,38 @@
+[comment encoding = UTF-8 /]
+[module totina('http://petrinet/')]
+
+
+[template public processToTina(aPetriNet : PetriNet)]
+[comment @main/]
+[file (aPetriNet.name + '.net', false, 'UTF-8')]
+
+net [aPetriNet.name/]
+
+[let places : OrderSet(Place) = aPetriNet.getPetriPlaces() /]
+[for (p : Place | places) ]
+	pl [  p.name /] ([  p.jeton  /])
+[/for ]
+
+[let transitions : OrderSet(Transition) = aPetriNet.getPetriTransitions() /]
+
+[for (trans : Transition | transitions)]
+	tr [ trans.name /] [for (arc: Arc | arc.getLinkToSource())] [ arc.source.name /] [if (arc.oclIsTypeOf(read))] ? [arc.weight /] [else] [if arc.weight > 1 /] * [arc.weight /] [/if] [/if] [/for] -> [for (arc: Arc | arc.getLinkToTarget())] [ arc.target.name /] [/for]
+                       
+[/for ]
+
+[/let]
+[/file]
+[/template]
+
+
+[query public getPetriPlaces(net: PetriNet) : OrderedSet(Place) = 
+	net.petriNetElement->select( p | p.oclIsTypeOf(Place) )
+		->collect( p | p.oclAsType(Place) )
+		->asOrderedSet()
+/]
+
+[query public getPetriTransitions(net: PetriNet) : OrderedSet(Transition) = 
+	net.petriElements->select( t | t.oclIsTypeOf(Transition) )
+		->collect( t | t.oclAsType(Transition) )
+		->asOrderedSet()
+/]

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Layout resource="/gene formul/src/main/webapp/WEB-INF/web.xml">
+ <TreeFormPage>
+  <Memento type="FileWebApp25">
+   <Memento collapsed="false" type="Web Descriptor 2.5"/>
+   <Memento collapsed="false" type="Context Params"/>
+   <Memento collapsed="false" type="Advanced"/>
+  </Memento>
+  <Memento type="WebAppFolderServlets">
+   <Memento collapsed="false" type="Servlets"/>
+   <Memento collapsed="false" type="Servlet Mappings"/>
+  </Memento>
+  <Memento type="WebAppFolderListeners24">
+   <Memento collapsed="false" type="Listeners"/>
+  </Memento>
+  <Memento type="WebAppFolderEJB">
+   <Memento collapsed="false" type="Ejb Ref List"/>
+   <Memento collapsed="false" type="Ejb Local Ref List"/>
+  </Memento>
+  <Memento type="WebAppFolderPersistence25">
+   <Memento type="Persistence"/>
+  </Memento>
+ </TreeFormPage>
+</Layout>

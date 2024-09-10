@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Servlet Test</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="myCtrl">
+    <div class="testbox">
+        <h1>{{message}}</h1>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', function($scope, $http) {
+            $http.get('/simpleWebapp/hello')
+                .then(function(response) {
+                    $scope.message = response.data.message;
+                }, function(error) {
+                    console.error('Error fetching data:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>

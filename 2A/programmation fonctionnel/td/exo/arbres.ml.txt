@@ -1,0 +1,473 @@
+(* Exercice 1 *)
+
+type 'a arbre = Vide | Noeud of 'a arbre*'a*'a arbre;;
+
+let racine a = match a with
+   Vide -> failwith "l'arbre est vide"
+   |Noeud(_,x,_) -> x ;;
+   
+
+let fg a = match a with
+   Vide -> failwith "l'arbre est vide"
+   |Noeud(b,_,_) -> b ;;
+   
+
+let fd a = match a with
+   Vide -> failwith "l'arbre est vide"
+   |Noeud(_,_,b) -> b ;;
+   
+
+let rec taille a = match a with
+   Vide -> 0
+   |Noeud(b,_,c) -> 1+(taille b)+(taille c) ;;
+   
+let rec hauteur a = match a with
+   Vide -> -1
+   |Noeud(b,_,c) -> 1+max (hauteur b) (hauteur c) ;;
+
+
+
+
+let a = Noeud(Noeud(Noeud(Vide,1,Noeud(Vide,2,Vide)),3,Noeud(Vide,4,Noeud(Vide,5,Vide))),6,Noeud(Vide,7,Noeud(Vide,8,Vide)));;
+
+racine a;;fg a;;taille a;;hauteur a;;
+
+let rec recherche x a = match a with
+   Vide -> false
+   |Noeud(fg,y,fd) -> if y=x then
+                       true
+                    else 
+                       if recherche x fg then
+                          true
+                       else
+                          recherche x fd;;   
+                              
+
+recherche 9 a,recherche 4 a;;   
+
+let rec sous_arbre x a = match a with
+   Vide -> Vide
+   |Noeud(fg,y,fd) -> if y=x then
+                       a
+                    else 
+                       match sous_arbre x fg with
+                          Vide -> sous_arbre x fd
+                          |b -> b;;   
+   
+sous_arbre 9 a,sous_arbre 4 a;; 
+
+(* Exercice 2 *)
+
+type arbre = Feuille of int | Noeud of arbre*arbre;;
+
+(* question a *)
+
+let rec construire_arbre = function
+   1 -> Feuille(random__int max_int)
+   |n-> let k =1+random__int (n-1) in Noeud(construire_arbre k,construire_arbre (n-k)) ;;  
+
+let a1 = construire_arbre 100000;;
+
+(* question b *)
+
+let rec construire_branche = function
+   1 -> Feuille(random__int max_int)
+   |n-> Noeud(construire_branche (n-1),Feuille (random__int max_int));;  
+
+
+let b1 = construire_branche 5000;;
+
+
+(* question c *)
+let copier a v = let i = ref 0 in
+   let rec vider = function
+      Feuille(n) -> v.(!i) <- n; incr i
+      |Noeud(a1,a2) -> vider a1; vider a2 in
+  vider a;;
+  
+let v1 = make_vect 100000 0;;
+
+copier a1 v1;;
+
+v1.(34956);;
+
+(* question d *)
+
+(* Une mŽthode de paresseux ... *)
+
+let rec liste_paresseux = function
+   Feuille(n) -> [n]
+   |Noeud(a1,a2) -> (liste_paresseux a1)@(liste_paresseux a2);;
+
+
+let liste_feuilles a = let pile = ref [] in
+   let rec vider = function
+      Feuille(n) -> pile := n::(!pile);
+      |Noeud(a1,a2) -> vider a2; vider a1 in
+  vider a;
+  !pile;;
+
+(* La mŽthode paresseuse est assez efficace sur des arbres ŽquilibrŽs ... sauf quand la taille devient trs grande *)
+
+liste_paresseux a1;;  
+
+liste_feuilles a1;;
+
+let a2 = construire_arbre 300000;;
+
+liste_paresseux a2;;  
+
+liste_feuilles a2;;
+
+(* mais elle est catastrophique sur des arbres dŽsŽquilibrŽs *)
+
+let rec construire_branche = function
+   1 -> Feuille(random__int max_int)
+   |n-> Noeud(construire_branche (n-1),Feuille (random__int max_int));;  
+
+liste_paresseux b1;;
+
+liste_feuilles b1;;
+
+let b2 = construire_branche 10000;;
+
+liste_paresseux b2;;
+
+liste_feuilles b2;;
+
+let b3 = construire_branche 100000;;
+
+liste_feuilles b3;;
+
+
+(* Exercice 3 *)
+
+(* question a *)
+
+let PereEnFils pere = 
+    let n = vect_length pere in
+    let fils = make_vect n [] in
+    for i = 1 to n-1 do
+        let j = pere.(i) in
+        fils.(j) <- i::fils.(j)
+    done;
+    fils;;  
+    
+let FilsEnPere fils = 
+    let n = vect_length fils in
+    let pere = make_vect n 0 in
+    for i = 1 to n-1 do
+        let L = ref fils.(i) in
+        while !L <> [] do
+           pere.(hd !L) <- i;
+           L := tl !L
+        done;   
+    done;
+    pere;;       
+
+
+PereEnFils [|0;0;0;1;1;2|];;
+
+FilsEnPere (PereEnFils [|0;0;0;1;1;2|]);; 
+
+(* question b *)
+
+let poids fils =
+    let n = vect_length fils in
+    let p = make_vect n 0 in
+    let rec met_a_jour i =   (* fonction qui met ˆ jour p et qui renvoie p.(i) *)
+        if p.(i) = 0 then
+           begin
+           let L = ref fils.(i) and c = ref 1 in (* compteur du nombre de noeud *)
+           while !L <> [] do
+               c := !c + met_a_jour (hd !L) ;
+               L := tl !L
+           done;
+           p.(i) <- !c 
+           end ;
+        p.(i) in
+        
+    for i = 0 to n-1 do
+       met_a_jour i
+    done;
+    p ;;
+
+(* question c *)
+
+let echanger L i j=
+   let x = L.(i) in
+   L.(i) <- L.(j);
+   L.(j) <- x;;
+
+let gauchir fils =
+    let n = vect_length fils in
+    let p = poids fils in
+    let rec gauchir_noeud i =
+        match fils.(i) with
+        | [] -> ()
+        | F -> let L = ref (tl F) and jmax = ref (hd F) and pmax = ref p.(hd F) and NL = ref [] in
+                   gauchir_noeud (hd F);
+                   while !L <> [] do
+                      let j = hd !L in
+                      L := tl !L;
+                      gauchir_noeud j;
+                      if p.(j) > !pmax then
+                          begin
+                          NL := !jmax::(!NL);
+                          jmax := j;
+                          pmax := p.(j);
+                          end
+                      else
+                          NL := j::(!NL); 
+                   done;
+                   fils.(i) <- !jmax::(!NL) in
+    gauchir_noeud 0;; 
+
+(* La fonction auxiliaire rend gauche (rŽcursivement) chaque fils du noeud i et reconstruit la liste des fils: le fils le plus lourd dŽjˆ rencontrŽ 
+est notŽ jmax : quand on rencontre un nouveau fils j plus lourd que jmax, on met jmax dans la nouvelle liste des fils; sinon, on met 
+j dans cette liste. A la fin de la boucle, NL contient tous les fils de i sauf le plus lourd : il reste ˆ ajouter le fils le plus
+lourd au dŽbut de la liste qui devient la nouvelle liste des fils de i *)
+
+                       
+           
+let P = [|0;3;3;0;2;0;5;5;7;7|];;
+
+let F = PereEnFils P;;
+
+gauchir F;;
+
+F;;
+
+(* Exercice 4 *)
+
+let F = PereEnFils [|0;0;0;1;1;2|];;
+poids F;;
+
+
+type 'a arbre = Vide | Noeud of 'a arbre*'a*'a arbre;;
+
+(* question a *) 
+
+(* la fonction auxiliaire test valide un arbre en renvoyant en mme temps, qd l'arbre est valide, la valeur minimale et la valeur maximale contenue dans l'arbre *)
+
+let validation a = 
+   let rec test = function
+      Vide -> true,max_int,min_int
+      |Noeud(a1,n,a2) -> match test a1 with
+                         (false,_,_) -> (false,0,0)
+                         |(_,m1,M1) -> if M1>n then
+                                        (false,0,0)
+                                       else
+                                       begin
+                                          match test a2 with
+                                             (false,_,_) -> (false,0,0)
+                                            |(_,m2,M2) -> if n>m2 then
+                                                             (false,0,0)
+                                                          else
+                                                             (true,min m1 n, max M2 n)
+                                       end in
+   test a;;                      
+                                                              
+let a1 = Noeud(Noeud(Vide,4,Vide),3,Noeud(Vide,7,Vide));;   
+let a2 = Noeud(Noeud(Vide,0,Vide),3,Noeud(Noeud(Vide,2,Vide),7,Noeud(Vide,12,Vide)));;                                                              
+let a3 = Noeud(Noeud(Vide,0,Vide),3,Noeud(Noeud(Vide,4,Vide),7,Noeud(Vide,12,Vide)));;     
+                                                          
+validation a1;;
+validation a2;;                                                           
+validation a3;;                                                              
+
+(* question b *)
+
+(* la fonction auxiliaire parcours ajoute les valeurs lues ˆ la pile p *)
+
+let lecture_infixe a = let p=ref [] in
+   let rec parcours = function
+       Vide -> ()
+      |Noeud(fg,a,fd) -> parcours fd; p := a::(!p); parcours fg in
+   parcours a;
+   !p;;    
+
+lecture_infixe a1;;
+lecture_infixe a2;; 
+lecture_infixe a3;;
+
+
+
+(* question c *)
+
+
+let rec maximum = function
+    Vide -> failwith "L'arbre est vide"
+   |Noeud(_,x,Vide) -> x
+   |Noeud(_,_,fd) -> maximum fd;;   
+
+let rec minimum = function
+    Vide -> failwith "L'arbre est vide"
+   |Noeud(Vide,x,_) -> x
+   |Noeud(fg,_,_) -> minimum fg;;   
+
+maximum a3 ;;
+
+minimum a3 ;;
+ 
+ 
+(* question d *)
+
+let rec inserer a = function
+    Vide -> Noeud(Vide,a,Vide)
+   |Noeud(fg,b,fd) when a<b -> Noeud(inserer a fg,b,fd)
+   |Noeud(fg,b,fd) -> Noeud(fg,b,inserer a fd);;
+
+lecture_infixe a3;;
+let a4 = inserer 5 a3;;
+lecture_infixe a4;;
+
+(* question e *)
+
+let rec supprime_max = function
+    Vide -> failwith "l'arbre est vide"
+   |Noeud(fg,a,Vide) -> a,fg
+   |Noeud(fg,a,fd) -> let M,f = supprime_max fd in M,Noeud(fg,a,f);;
+
+lecture_infixe a4;;
+let x,a=supprime_max a4 in 
+   x,lecture_infixe a;;
+
+let rec supprime_min = function
+    Vide -> failwith "l'arbre est vide"
+   |Noeud(Vide,a,fd) -> a,fd
+   |Noeud(fg,a,fd) -> let m,f = supprime_min fg in m,Noeud(f,a,fd);;
+
+lecture_infixe a4;;
+let x,a=supprime_min a4 in 
+   x,lecture_infixe a;;
+   
+(* question f *)   
+
+let rec supprime_racine = function
+    Vide -> failwith "l'arbre est vide"
+   |Noeud(Vide,x,fd) -> x,fd
+   |Noeud(fg,x,Vide) -> x,fg
+   |Noeud(fg,x,fd) -> let m,f = supprime_min fd in x,Noeud(fg,m,f);;
+
+lecture_infixe a4;;
+let a=supprime_racine a4 in 
+   x,lecture_infixe a;;
+   
+   
+(* question g *)
+let rotation_gauche = function
+    Noeud(a1,alpha,Noeud(a2,beta,a3)) -> Noeud(Noeud(a1,alpha,a2),beta,a3)
+   |_ ->  failwith "La rotation gauche n'est pas permise";;
+
+let rotation_droite = function
+    Noeud(Noeud(a1,alpha,a2),beta,a3) -> Noeud(a1,alpha,Noeud(a2,beta,a3)) 
+   |_ ->  failwith "La rotation droite n'est pas permise";;
+
+let rotation_gauche_droite = function
+   Noeud(Noeud(a1,alpha,Noeud(a2,beta,a3)),gamma,a4) -> 
+                       Noeud(Noeud(a1,alpha,a2),beta,Noeud(a3,gamma,a4))
+   |_ ->  failwith Ç La rotation gauche-droite n'est pas permise È;;
+
+let a5 = rotation_gauche a4;;
+lecture_infixe a5;;
+let a6 = rotation_droite a4;;
+lecture_infixe a6;;
+
+(* question h *)
+
+let rotation_gauche_droite = function
+   Noeud(Noeud(a1,alpha,Noeud(a2,beta,a3)),gamma,a4) -> 
+                       Noeud(Noeud(a1,alpha,a2),beta,Noeud(a3,gamma,a4))
+   |_ ->  failwith "La rotation gauche-droite n'est pas permise";;
+
+
+let rotation_droite_gauche = function
+   Noeud(a1,alpha,Noeud(Noeud(a2,beta,a3),gamma,a4)) -> 
+                       Noeud(Noeud(a1,alpha,a2),beta,Noeud(a3,gamma,a4))
+   |_ ->  failwith "La rotation droite-gauche n'est pas permise";;
+
+let a7 = rotation_gauche_droite a4;;
+let a7 = rotation_droite_gauche a4;;
+lecture_infixe a7;;
+   
+
+(* Exercice 6 *)
+
+(* question a *)
+
+(* La racine est le seul noeud qui n'est ni un fils gauche, ni un frere droit. On utilise donc un vecteur V de longueur n contenant initialement la valeur boolŽenne 
+true. Pour chaque contenu j diffŽrent de -1 rencontrŽ dans les vecteurs FilsGauche et FrereDroit, on affecte la valeur false ˆ la case V.(j). Une fois les deux vecteurs parcourus, 
+on cherche l'unique entier j tel que V.(j)=true : j est le numŽro de la racine *)
+
+let calcul_racine FilsGauche FrereDroit = let n = vect_length FilsGauche  in let V = make_vect n true in
+for i = 0 to n-1 do
+   match FilsGauche.(i),FrereDroit.(i) with
+      (-1,-1) -> ()
+      |(-1,j) -> V.(j) <- false
+      |(j,-1) -> V.(j) <- false
+      |(j1,j2) -> V.(j1) <- false; V.(j2) <- false
+done;
+let j=ref 0 in
+   while not V.(!j) do
+      incr j
+   done;
+   !j;;      
+   
+let FilsGauche1=[|5;-1;-1;-1;2;6;-1;0;-1|] and FrereDroit1=[|1;4;3;-1;-1;-1;8;-1;-1|];;
+let FilsGauche2=[|-1;5;-1;1;10;-1;-1;-1;4;-1;-1|] and FrereDroit2=[|6;9;-1;-1;0;2;7;-1;-1;8;-1|];;      
+ 
+calcul_racine FilsGauche1 FrereDroit1;; 
+calcul_racine FilsGauche2 FrereDroit2;; 
+
+(* question b *)
+
+(* On dŽfinit un vecteur arite de longueur n contenant la valeur 0. Pour chaque i compris entre 0 et n-1, on compte le nombre de fils de i en parcourant ces fils 
+en partant du fils gauche (s'il existe) et suivant les liens dŽfinis par FilsDroit *)
+
+let calcul_arite FilsGauche FrereDroit = let n = vect_length FilsGauche  in let a = make_vect n 0 in
+   for i = 0 to n-1 do
+   let j = ref FilsGauche.(i) in
+      while (!j)<>(-1) do
+         a.(i) <- a.(i)+1;
+         j := FrereDroit.(!j)
+      done;
+   done;
+   a;;   
+
+calcul_arite FilsGauche1 FrereDroit1;;
+calcul_arite FilsGauche2 FrereDroit2;;
+
+(* C'est un peu plus difficile de calculer efficacement le tableau des pres. On utilise pour cela la fonction auxiliaire rŽcursive remplir qui, appliquŽe ˆ un noeud i, va 
+remplir le tableau pere pour tous les noeuds du sous-arbre de racine i. Il sufira ensuite d'appliquer cette fonction auxiliaire ˆ la racine de l'arbre *)
+
+let calcul_pere FilsGauche FrereDroit = let n = vect_length FilsGauche  in let p = make_vect n (-1) in
+   let rec remplir i = let j=ref (FilsGauche.(i)) in
+      while (!j)<>(-1) do
+         p.(!j) <- i;
+         remplir (!j);
+         j := FrereDroit.(!j)
+      done in
+   remplir (calcul_racine FilsGauche FrereDroit);
+   p;;      
+
+calcul_pere FilsGauche1 FrereDroit1;;
+
+calcul_pere FilsGauche2 FrereDroit2;;
+
+(* exercice 7 *)
+
+type foret = Vide | Noeud of foret*int*foret ;;
+
+let rec nbre_arbres = function
+   Vide -> 0
+   |Noeud(fils,_,freres) -> 1+nbre_arbres freres;;
+
+
+let rec hauteur = function
+   Vide -> -1
+   |Noeud(fils,_,freres) -> max (1+hauteur fils) (hauteur freres);;
+ 
+let rec taille = function
+   Vide -> 0
+   |Noeud(fils,_,freres) -> 1+(taille fils) +(taille freres);;

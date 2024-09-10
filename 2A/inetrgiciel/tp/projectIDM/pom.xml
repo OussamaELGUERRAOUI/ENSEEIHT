@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+                      
+  
+<dependencies>
+    <!-- Autres dépendances du module -->
+
+    <!-- Dépendances Apache POI pour la manipulation de fichiers Excel -->
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi</artifactId>
+        <version>4.1.2</version> <!-- Assurez-vous de vérifier la dernière version sur https://mvnrepository.com/artifact/org.apache.poi/poi -->
+    </dependency>
+
+    <dependency>
+        <groupId>org.apache.poi</groupId>
+        <artifactId>poi-ooxml</artifactId>
+        <version>4.1.2</version> <!-- Assurez-vous de vérifier la dernière version sur https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+    </dependency>
+</dependencies>
+
+  
+  
+  
+  
+  
+  
+  <modelVersion>4.0.0</modelVersion>
+                      
+  
+  
+  
+  
+  
+  
+  
+  
+  <parent>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    <groupId>cn.org.thinkcloud</groupId>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    <artifactId>think-cloud-build</artifactId>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    <version>2.0.0.RELEASE</version>
+                                        
+  
+  
+  
+  
+  
+  
+  
+  
+  </parent>
+                      
+  
+  
+  
+  
+  
+  
+  
+  
+  <groupId>projectidm</groupId>
+                      
+  
+  
+  
+  
+  
+  
+  
+  
+  <artifactId>projectIDM</artifactId>
+                      
+  
+  
+  
+  
+  
+  
+  
+  
+  <version>0.0.1-SNAPSHOT</version>
+                      
+  
+  
+  
+  
+  
+  
+  
+  
+  <packaging>pom</packaging>
+                      
+  
+  
+  
+  
+  
+  
+  
+  
+  <properties>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    <rversion>2.0.0.RELEASE</rversion>
+                                        
+  
+  
+  
+  
+  
+  
+  
+  
+  </properties>
+                      
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--OWN Dependencies -->
+                      
+  
+  
+  
+  
+  
+  
+  
+  
+  <dependencyManagement>
+                                            
+    
+    
+    
+    
+    
+    
+    
+    
+    <dependencies>
+                                                                  
+      
+      
+      
+      
+      
+      
+      
+      
+      <dependency>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <groupId>${project.groupId}</groupId>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <artifactId>projectIDM-domain</artifactId>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <version>0.0.1-SNAPSHOT</version>
+                                                                                    
+      
+      
+      
+      
+      
+      
+      
+      
+      </dependency>
+                                                                  
+      
+      
+      
+      
+      
+      
+      
+      
+      <dependency>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <groupId>${project.groupId}</groupId>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <artifactId>projectIDM-repo-api</artifactId>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <version>0.0.1-SNAPSHOT</version>
+                                                                                    
+      
+      
+      
+      
+      
+      
+      
+      
+      </dependency>
+                                                                  
+      
+      
+      
+      
+      
+      
+      
+      
+      <dependency>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <groupId>${project.groupId}</groupId>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <artifactId>projectIDM-biz-api</artifactId>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <version>0.0.1-SNAPSHOT</version>
+                                                                                    
+      
+      
+      
+      
+      
+      
+      
+      
+      </dependency>
+                                                                  
+      
+      
+      
+      
+      
+      
+      
+      
+      <dependency>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <groupId>${project.groupId}</groupId>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <artifactId>projectIDM-manager-api</artifactId>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <version>0.0.1-SNAPSHOT</version>
+                                                                                    
+      
+      
+      
+      
+      
+      
+      
+      
+      </dependency>
+                                                                  
+      
+      
+      
+      
+      
+      
+      
+      
+      <dependency>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <groupId>${project.groupId}</groupId>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <artifactId>projectIDM-commons</artifactId>
+                                                                                        
+        
+        
+        
+        
+        
+        
+        
+        
+        <version>0.0.1-SNAPSHOT</version>
+                                                                                    
+      
+      
+      
+      
+      
+      
+      
+      
+      </dependency>
+                                                              
+    
+    
+    
+    
+    
+    
+    
+    
+    </dependencies>
+                                        
+  
+  
+  
+  
+  
+  
+  
+  
+  </dependencyManagement>
+                  
+  
+  
+  
+  
+  
+  
+  
+  
+  <modules>
+                                      
+    
+    
+    
+    
+    
+    
+    
+    
+    <module>projectIDM-domain</module>
+                                      
+    
+    
+    
+    
+    
+    
+    
+    
+    <module>projectIDM-commons</module>
+                                  
+    
+    
+    
+    
+    
+    
+    
+    <module>projectIDM-repo-api</module>
+                              
+    
+    
+    
+    
+    
+    
+    <module>projectIDM-biz-api</module>
+                          
+    
+    
+    
+    
+    
+    <module>projectIDM-manager-api</module>
+                      
+    
+    
+    
+    
+    <module>projectIDM-biz-provider</module>
+                  
+    
+    
+    
+    <module>projectIDM-repo-provider</module>
+              
+    
+    
+    <module>projectIDM-manager-provider</module>
+          
+    
+    <module>projectIDM-ctl</module>
+      
+  </modules>
+                
+
+
+
+
+
+
+
+</project>

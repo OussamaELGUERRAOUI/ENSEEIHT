@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+		}
+
+		.container {
+			display: flex;
+		}
+
+		.sidebar {
+			width: 200px;
+			background-color: #f4f4f4;
+			padding: 20px;
+			height: 100vh;
+		}
+
+		.sidebar a {
+			display: block;
+			margin-bottom: 10px;
+			padding: 10px;
+			background-color: #fff;
+			border: 1px solid #ddd;
+			text-decoration: none;
+			color: black;
+			cursor: pointer;
+		}
+
+		.sidebar a:hover {
+			background-color: #ddd;
+		}
+
+		.content {
+			flex: 1;
+			padding: 20px;
+		}
+
+		.dropdown {
+			position: relative;
+			display: inline-block;
+		}
+
+		.dropdown-button {
+			padding: 10px;
+			background-color: #f9f9f9;
+			border: 1px solid #ccc;
+			cursor: pointer;
+		}
+
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f9f9f9;
+			min-width: 200px;
+			box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+			z-index: 1;
+			border: 1px solid #ccc;
+		}
+
+		.dropdown-content label {
+			display: flex;
+			align-items: center;
+			padding: 10px;
+			cursor: pointer;
+		}
+
+		.dropdown-content label:hover {
+			background-color: #f1f1f1;
+		}
+
+		.dropdown.open .dropdown-content {
+			display: block;
+		}
+
+		.dropdown-content input[type="checkbox"] {
+			margin-right: 10px;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div ng-app="myApp" ng-controller="myCtrl">
+		<div class="container">
+			<div class="sidebar">
+				<a ng-click="doClick('addInfo')">Information génerale</a>
+				<a ng-click="doClick('addSchool')">Ajouter une nouvelle école</a>
+				<a ng-click="doClick('addBloc')">Ajouter un bloc</a>
+				<a ng-click="doClick('addQuestion')">Ajouter une question</a>
+				
+			</div>
+			<div class="content">
+				<div ng-show="showAddInfo">
+					<form novalidate>
+						School Name: <input type="text" ng-model="info.schoolName" ng-disabled="!editMode "><br>
+						School Logo: <input type="file" ng-model="info.schoolLogo" accept="image/*"
+							ng-disabled="!editMode"><br>
+						Upload Excel/CSV: <input type="file" ng-model="info.file" accept=".csv,.xls,.xlsx"
+							ng-disabled="!editMode"><br>
+						<br>
+						<button ng-click="toggleEditMode()"> Modifier</button>
+						<button ng-click="doOK('addInfo')">Enregistrer</button>
+					</form>
+				</div>
+
+				<div ng-show="showAddSchool">
+					<form novalidate>
+						<label for="schoolName">Nom de l'école ou l'université :</label>
+						<input type="text" id="schoolName" ng-model="university.schoolName"><br>
+
+						<label for="country">Pays :</label>
+						<input type="text" id="country" ng-model="university.country"><br>
+
+						<label for="cadre">Cadre :</label>
+						<div class="dropdown" ng-class="{open: isDropdownOpen}">
+							<div class="dropdown-button" ng-click="toggleDropdown()">Choisissez un cadre</div>
+							<div class="dropdown-content">
+								<label><input type="checkbox" ng-model="address.cadreOptions['Option 1']"> Option
+									1</label>
+								<label><input type="checkbox" ng-model="address.cadreOptions['Option 2']"> Option
+									2</label>
+								<label><input type="checkbox" ng-model="address.cadreOptions['Option 3']"> Option
+									3</label>
+								<label><input type="checkbox" ng-model="address.cadreOptions['Option 4']"> Option
+									4</label>
+							</div>
+						</div><br>
+
+						<label for="specialite">Spécialité :</label>
+						<input type="text" id="specialite" ng-model="university.specialite"><br>
+
+						<br>
+						<button type="button" ng-click="doOK('addSchool')">Enregistrer</button>
+					</form>
+				</div>
+
+				<div ng-show="showAddBloc">
+					<form novalidate>
+						<h1>Ajouter un nouveau Bloc</h1>
+
+						<label for="blocName">Nom du Bloc :</label>
+						<input type="text" id="blocName" ng-model="newBloc.name" required>
+						<br>
+						<label for="blocName">Classement du bloc :</label>
+						<input type="text" id="blocName" ng-model="newBloc.rank" required><br>
+						<button type="submit" ng-click="doClick('addBloc')">Ajouter</button>
+
+
+						<h2>Liste des Blocs</h2>
+						<div ng-repeat="bloc in blocs" class="rectangle" ng-click="loadQuestions(bloc)">
+							{{ bloc.name }}
+						</div>
+
+						<div ng-if="selectedBloc">
+							<h3>Questions pour le bloc {{ selectedBloc.name }}</h3>
+							<ul>
+								<li ng-repeat="question in questions">{{ question }}</li>
+							</ul>
+						</div>
+					</form>
+				</div>
+				<div ng-show="showAddQuestion">
+					<form novalidate>
+						<label for="blocSelect">Sélectionnez un Bloc :</label>
+						<select id="blocSelect" ng-model="selectedBlocForQuestion" ng-options="bloc.name for bloc in blocs track by bloc.id" required>
+							<option value="">Sélectionnez un bloc</option>
+						</select>
+						<label for="questionText">Question :</label>
+						<input type="text" id="questionText" ng-model="newQuestion.text" required><br>
+						<button type="submit" ng-click="doOK('addQuestion')">Ajouter la question</button>
+					</form>
+				</div>
+
+				
+		</div>
+	</div>
+
+	<script>
+		function initVars(scope) {
+			scope.person = {};
+			scope.address = {};
+			scope.onePerson = "";
+			scope.oneAddress = "";
+			scope.message = "";
+		}
+
+		function initView(scope) {
+			scope.showAddInfo = false;
+			scope.showAddSchool = false;
+			scope.showAddBloc = false;
+			scope.showAddQuestion = false;
+			scope.showMessage = false;
+			scope.isDropdownOpen = false;
+			scope.editMode = false;
+		}
+
+
+
+
+        function addInformation(scope, http) {
+			data = {
+				action: "addInformation",
+				schoolName: scope.info.schoolName,
+				schoolLogo: scope.info.schoolLogo,
+				file: scope.info.file
+			};
+			http.post("/", data).then(function (response) {
+				if (response.status === 204) {
+					scope.message = "information was added";
+				} else {
+					scope.message = "failed to add information";
+				}
+				scope.showMessage = true;
+			});
+		}
+
+		function addSchool(scope, http) {
+			data = {
+				action: "addSchool",
+				schoolName: scope.university.schoolName,
+				country: scope.university.country,
+				cadreOptions: scope.university.cadreOptions,
+				specialite: scope.university.specialite
+			};
+			http.post("/", data).then(function (response) {
+				if (response.status === 204) {
+					scope.message = "school was added";
+				} else {
+					scope.message = "failed to add a school";
+				}
+				scope.showMessage = true;
+			});
+		}
+
+		function addBloc(scope, http) {
+			data = {
+				action: "addBloc",
+				name: scope.newBloc.name,
+				rank: scope.newBloc.rank
+			};
+			http.post("/", data).then(function (response) {
+				if (response.status === 204) {
+					scope.message = "bloc was added";
+				} else {
+					scope.message = "failed to add a bloc";
+				}
+				scope.showMessage = true;
+			});
+		}
+
+
+		function click(button, scope, http) {
+			initView(scope);
+			initVars(scope);
+			switch (button) {
+				case "addInfo":
+					scope.showAddInfo = true;
+					break;
+				case "addSchool":
+					scope.showAddSchool = true;
+					break;
+				case "addBloc":
+					scope.showAddBloc = true;
+					break;
+				case "addQuestion":
+					scope.showAddQuestion = true;
+					break;
+			}
+		}
+
+		function OK(action, scope, http) {
+			initView(scope);
+			switch (action) {
+				case "addInfo":
+					addInformation(scope, http);
+					break;
+				case "addSchool":
+					addSchool(scope, http);
+				break;
+				case "addBloc":
+					addBloc(scope, http);
+				break;
+				case "addQuestion":
+					addQuestion(scope, http);
+				break;
+				
+			}
+		}
+
+		var app = angular.module('myApp', []);
+		app.controller('myCtrl', function ($scope, $http) {
+			initVars($scope);
+			initView($scope);
+
+
+			$scope.doClick = function (button) {
+				click(button, $scope, $http);
+			};
+			$scope.doOK = function (action) {
+				OK(action, $scope, $http);
+
+			};
+			$scope.toggleEditMode = function () {
+				$scope.editMode = true;
+			};
+
+			$scope.save = function () {
+				$scope.editMode = false;
+			};
+			$scope.toggleDropdown = function () {
+				$scope.isDropdownOpen = !$scope.isDropdownOpen;
+			};
+
+			$scope.editMode = false;
+		});
+
+
+	</script>
+
+</body>
+
+</html>

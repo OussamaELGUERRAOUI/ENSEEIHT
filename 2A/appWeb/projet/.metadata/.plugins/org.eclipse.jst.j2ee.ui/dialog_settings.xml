@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="J2EE_EXPORT_OVERWRITE" value="true"/>
+	<item key="J2EE_EXPORT_SOURCE" value="true"/>
+	<list key="MRU_RUNTIME_STORE">
+		<item value="WildFly 23.0 Runtime 1"/>
+		<item value="WildFly 27.0 Runtime"/>
+		<item value="apache-tomcat-10.1.19"/>
+		<item value="WildFly 23.0 Runtime"/>
+		<item value="JBoss 6.x Runtime"/>
+	</list>
+	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="C:\EAP-7.0.0\standalone\deployments\appfront.war"/>
+		<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\appWeb\app.formulair.war"/>
+		<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\appWeb\jboss-eap-8.0.0\jboss-eap-8.0\standalone\deployments\testEjb.war"/>
+		<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\appWeb\projet\g-neration-d-une-formulaire-\gene formul.war"/>
+	</list>
+</section>

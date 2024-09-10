@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\semanTra\projet\MiniJava\MiniJavaWorking"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\semanTra\MiniJava\MiniJava\MiniJavaWorking\fr.n7.stl.block"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\ENSEEIHT-master\2A\S8\STDL\Projet\G06\miniJava\pr1"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\semanTra\mjava\MiniJava\stl-block-student"/>
+			<item value="C:\Users\elgue\Downloads\fr.n7.stl.block (1)"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\semanTra\MiniJava\stl-block-student"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\ENSEEIHT-master\2A\S8\Declarative_Programming\TPs\MP3"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\prog Declarative\mini projet 3"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\ENSEEIHT-master\2A\S8\STDL\Projet\G06\miniJava\fr.n7.stl.block"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\ENSEEIHT-master\2A\S8\STDL\Projet\G06\miniJava\fr.n7.stl.block1"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\semanTra\MiniJava\stl-block-student\fr.n7.stl.block"/>
+		</list>
+	</section>
+</section>

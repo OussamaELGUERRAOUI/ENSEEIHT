@@ -1,0 +1,18 @@
+pl Lundi (1)
+pl Mardi (0)
+pl Mercredi (0)
+pl Jeudi (0)
+pl Vendredi (0)
+pl Samedi (0)
+pl Dimanche (0)
+tr LM Lundi -> Mardi 
+tr MM Mardi -> Mercredi 
+tr MJ Mercredi -> Jeudi 
+tr JV Jeudi -> Vendredi 
+tr VS Vendredi -> Samedi 
+tr SD Samedi -> Dimanche 
+tr DL Dimanche -> Lundi
+
+
+
+

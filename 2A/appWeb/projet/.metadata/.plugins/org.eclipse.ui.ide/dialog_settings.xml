@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\elgue\OneDrive\Bureau\appfront"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\prog Declarative\mini projet 3"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\ENSEEIHT-master\2A\S8\Declarative_Programming\TPs\MP3"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\appWeb\projet\ejb-client-example-master"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\ENSEEIHT-master\2A\S8\Applications_Web\TPs\TP2\Agenda"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\appWeb\projet\annuaireAngular"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\appWeb\projet\testFront"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\appWeb\projet\gene formul\back end"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\appWeb\annuaireAngularJS\annuaireAngular"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\semanTra\MiniJava"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\semanTra\MiniC\stl-block-student"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\appWeb\annuaireAngularJS"/>
+			<item value="C:\Users\elgue\OneDrive\Bureau\SN\2SN\S8\appWeb\projet\g-neration-d-une-formulaire-"/>
+		</list>
+		<section name="SmartImportWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="502"/>
+			<item key="DIALOG_Y_ORIGIN" value="35"/>
+			<item key="DIALOG_WIDTH" value="935"/>
+			<item key="DIALOG_HEIGHT" value="726"/>
+			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		</section>
+	</section>
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.jdt.ui.wizards.JavaProjectWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+		</list>
+		<section name="NewWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="0"/>
+			<item key="DIALOG_Y_ORIGIN" value="0"/>
+			<item key="DIALOG_WIDTH" value="700"/>
+			<item key="DIALOG_HEIGHT" value="505"/>
+			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		</section>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="619"/>
+		<item key="DIALOG_Y_ORIGIN" value="89"/>
+		<item key="DIALOG_WIDTH" value="700"/>
+		<item key="DIALOG_HEIGHT" value="645"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="BasicNewProjectResourceWizard">
+		<section name="BasicNewProjectResourceWizard.dialogBounds">
+			<item key="DIALOG_X_ORIGIN" value="619"/>
+			<item key="DIALOG_Y_ORIGIN" value="194"/>
+			<item key="DIALOG_WIDTH" value="700"/>
+			<item key="DIALOG_HEIGHT" value="505"/>
+			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		</section>
+	</section>
+</section>

@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 18
+Specification-Title: RESEasy: Galleon Feature Pack
+Specification-Version: 6.2
+Specification-Vendor: JBoss by Red Hat
+Implementation-Title: RESEasy: Galleon Feature Pack
+Implementation-Version: 6.2.6.Final
+Implementation-Vendor: JBoss by Red Hat
+Created-By: Maven Integration for Eclipse
+Implementation-URL: https://resteasy.dev
+Java-Vendor: Eclipse Adoptium
+Java-Version: 18.0.2.1
+Os-Arch: amd64
+Os-Name: Windows 11
+Os-Version: 10.0
+Scm-Connection: scm:git:git://github.com/resteasy/resteasy.git
+Scm-Revision: 
+Scm-Url: https://github.com/resteasy/resteasy/tree/main/
+

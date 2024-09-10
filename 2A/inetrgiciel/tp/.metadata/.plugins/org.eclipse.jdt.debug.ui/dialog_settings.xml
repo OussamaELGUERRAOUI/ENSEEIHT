@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.jdt.debug.ui.MAIN_METHOD_SELECTION_DIALOG">
+		<item key="ShowStatusLine" value="true"/>
+		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=src/&amp;lt;Frame{TableToFrame.java[TableToFrame&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=hagidoop-new/src&amp;lt;daemon{WorkerImp.java[WorkerImp&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=hagidoop-new/src&amp;lt;hdfs{HdfsServer.java[HdfsServer&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=hagidoop-new/src&amp;lt;application{MyMapReduce.java[MyMapReduce&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=hagidoop-new/src&amp;lt;application{Count.java[Count&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=hagidoop-new/src&amp;lt;hdfs{HdfsdataMTest.java[HdfsdataMTest&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=TP-Parallel/count&amp;lt;{LargeIntArray.java[LargeIntArray&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=TP04comptes/&amp;lt;{ExempleComptes.java[ExempleComptes&lt;/infoNode&gt;&#x0D;&#x0A;&lt;infoNode&gt;=compte/src&amp;lt;{CompteCourantTest.java[CompteCourantTest&lt;/infoNode&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;"/>
+		<section name="DialogBoundsSettings">
+			<item key="DIALOG_HEIGHT" value="500"/>
+			<item key="DIALOG_WIDTH" value="600"/>
+			<item key="DIALOG_X_ORIGIN" value="622"/>
+			<item key="DIALOG_Y_ORIGIN" value="227"/>
+			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		</section>
+	</section>
+</section>

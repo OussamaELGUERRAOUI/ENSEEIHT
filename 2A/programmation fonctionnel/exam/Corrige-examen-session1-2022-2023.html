@@ -1,0 +1,225 @@
+
+<!-- saved from url=(0100)https://webusers.i3s.unice.fr/~elozes/enseignement/PF/annales/corrige-examen-session1-2022-2023.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<link rel="stylesheet" href="./Corrige-examen-session1-2022-2023_files/style.css" type="text/css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="https://webusers.i3s.unice.fr/~elozes/enseignement/PF/annales/index.html">
+<link title="Index of types" rel="Appendix" href="https://webusers.i3s.unice.fr/~elozes/enseignement/PF/annales/index_types.html">
+<link title="Index of values" rel="Appendix" href="https://webusers.i3s.unice.fr/~elozes/enseignement/PF/annales/index_values.html">
+<link title="Index of modules" rel="Appendix" href="https://webusers.i3s.unice.fr/~elozes/enseignement/PF/annales/index_modules.html">
+<link title="Index of module types" rel="Appendix" href="https://webusers.i3s.unice.fr/~elozes/enseignement/PF/annales/index_module_types.html">
+<link title="Corrige-examen-session1-2022-2023" rel="Chapter" href="https://webusers.i3s.unice.fr/~elozes/enseignement/PF/annales/Corrige-examen-session1-2022-2023.html"><title>Corrige-examen-session1-2022-2023</title>
+</head>
+<body data-new-gr-c-s-check-loaded="14.1048.0" data-gr-ext-installed="">
+<code class="code"><span class="comment">(*&nbsp;EXAMEN&nbsp;DE&nbsp;PROGRAMMATION&nbsp;FONCTIONNELLE&nbsp;2022-2023&nbsp;*)</span><br>
+<span class="comment">(*&nbsp;CORRIGE&nbsp;*)</span><br>
+<br>
+<br>
+<span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;list_filter_map&nbsp;f&nbsp;l&nbsp;=&nbsp;<span class="keyword">match</span>&nbsp;l&nbsp;<span class="keyword">with</span><br>
+<span class="keywordsign">|</span>&nbsp;[]&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;[]<br>
+<span class="keywordsign">|</span>&nbsp;hd::tl&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">begin</span><br>
+&nbsp;&nbsp;<span class="keyword">match</span>&nbsp;f&nbsp;hd&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Some</span>&nbsp;v&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;v&nbsp;::&nbsp;list_filter_map&nbsp;f&nbsp;tl<br>
+&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">None</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;list_filter_map&nbsp;f&nbsp;tl<br>
+&nbsp;&nbsp;<span class="keyword">end</span><br>
+<br>
+<br>
+<span class="comment">(*&nbsp;question&nbsp;1&nbsp;*)</span><br>
+<br>
+<span class="comment">(*&nbsp;`list_filter_map&nbsp;f1&nbsp;[-2;&nbsp;0;&nbsp;2;&nbsp;-1;&nbsp;3]`&nbsp;renvoie&nbsp;`[4;&nbsp;1]`&nbsp;*)</span><br>
+<br>
+<span class="comment">(*&nbsp;question&nbsp;2&nbsp;*)</span><br>
+<span class="keyword">let</span>&nbsp;list_map&nbsp;f&nbsp;l&nbsp;=&nbsp;list_filter_map&nbsp;(<span class="keyword">fun</span>&nbsp;x&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Some</span>(f&nbsp;x))&nbsp;l<br>
+<br>
+<span class="comment">(*&nbsp;question&nbsp;3&nbsp;*)</span><br>
+<span class="keyword">let</span>&nbsp;list_filter&nbsp;f&nbsp;l&nbsp;=&nbsp;list_filter_map&nbsp;(<span class="keyword">fun</span>&nbsp;x&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">if</span>&nbsp;f&nbsp;x&nbsp;<span class="keyword">then</span>&nbsp;<span class="constructor">Some</span>&nbsp;x&nbsp;<span class="keyword">else</span>&nbsp;<span class="constructor">None</span>)&nbsp;l<br>
+<br>
+<br>
+<span class="comment">(*&nbsp;question&nbsp;4&nbsp;*)</span><br>
+<span class="keyword">type</span>&nbsp;<span class="keywordsign">'</span>a&nbsp;bintree&nbsp;=&nbsp;<br>
+<span class="keywordsign">|</span>&nbsp;<span class="constructor">Feuille</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="keywordsign">'</span>a<br>
+<span class="keywordsign">|</span>&nbsp;<span class="constructor">Arbre</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="keywordsign">'</span>a&nbsp;bintree&nbsp;*&nbsp;<span class="keywordsign">'</span>a&nbsp;bintree<br>
+<br>
+<span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;bintree_filter_map&nbsp;f&nbsp;a&nbsp;=&nbsp;<span class="keyword">match</span>&nbsp;a&nbsp;<span class="keyword">with</span><br>
+<span class="keywordsign">|</span>&nbsp;<span class="constructor">Feuille</span>&nbsp;v&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">begin</span><br>
+&nbsp;&nbsp;<span class="keyword">match</span>&nbsp;f&nbsp;v&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">None</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">None</span><br>
+&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Some</span>&nbsp;v2&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Some</span>&nbsp;(<span class="constructor">Feuille</span>&nbsp;v2)<br>
+&nbsp;&nbsp;<span class="keyword">end</span><br>
+<span class="keywordsign">|</span>&nbsp;<span class="constructor">Arbre</span>(filsg,&nbsp;filsd)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">match</span>&nbsp;bintree_filter_map&nbsp;f&nbsp;filsg,&nbsp;bintree_filter_map&nbsp;f&nbsp;filsd&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">None</span>,&nbsp;x&nbsp;<span class="keywordsign">|</span>&nbsp;x,&nbsp;<span class="constructor">None</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;x<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Some</span>&nbsp;a1,&nbsp;<span class="constructor">Some</span>&nbsp;a2&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Some</span>&nbsp;(<span class="constructor">Arbre</span>(a1,&nbsp;a2))<br>
+&nbsp;&nbsp;<span class="keyword">end</span><br>
+<br>
+<span class="comment">(*&nbsp;question&nbsp;5&nbsp;*)</span><br>
+<br>
+<span class="comment">(*&nbsp;solution&nbsp;en&nbsp;style&nbsp;très&nbsp;impératif&nbsp;*)</span><br>
+<span class="keyword">let</span>&nbsp;array_filter_map&nbsp;f&nbsp;arr&nbsp;=&nbsp;<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;n&nbsp;=&nbsp;ref&nbsp;0&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;a_val&nbsp;=&nbsp;ref&nbsp;<span class="constructor">None</span>&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;arr2&nbsp;=&nbsp;<span class="constructor">Array</span>.map&nbsp;f&nbsp;arr&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">for</span>&nbsp;i&nbsp;=&nbsp;0&nbsp;<span class="keyword">to</span>&nbsp;<span class="constructor">Array</span>.length&nbsp;arr&nbsp;-&nbsp;1&nbsp;<span class="keyword">do</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;arr2.(i)&nbsp;&lt;&gt;&nbsp;<span class="constructor">None</span>&nbsp;<span class="keyword">then</span>&nbsp;<span class="keyword">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n&nbsp;:=&nbsp;!n&nbsp;+&nbsp;1;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_val&nbsp;:=&nbsp;arr2.(i)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;<span class="keyword">done</span>;<br>
+&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;!n&nbsp;=&nbsp;0&nbsp;<span class="keyword">then</span>&nbsp;[||]&nbsp;<span class="keyword">else</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;res&nbsp;=&nbsp;<span class="constructor">Array</span>.make&nbsp;!n&nbsp;(<span class="constructor">Option</span>.get&nbsp;!a_val)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;j&nbsp;=&nbsp;ref&nbsp;0&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">for</span>&nbsp;i&nbsp;=&nbsp;0&nbsp;<span class="keyword">to</span>&nbsp;<span class="constructor">Array</span>.length&nbsp;arr&nbsp;-&nbsp;1&nbsp;<span class="keyword">do</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;arr2.(i)&nbsp;&lt;&gt;&nbsp;<span class="constructor">None</span>&nbsp;<span class="keyword">then</span>&nbsp;<span class="keyword">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;res.(!j)&nbsp;&lt;-&nbsp;<span class="constructor">Option</span>.get&nbsp;arr2.(i);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;j&nbsp;:=&nbsp;!j&nbsp;+&nbsp;1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">end</span><br>
+&nbsp;&nbsp;<span class="keyword">done</span>;<br>
+&nbsp;&nbsp;res<br>
+<br>
+<span class="comment">(*&nbsp;solution&nbsp;en&nbsp;style&nbsp;un&nbsp;peu&nbsp;plus&nbsp;fonctionnel&nbsp;*)</span><br>
+<span class="keyword">let</span>&nbsp;array_filter_map&nbsp;f&nbsp;arr&nbsp;=<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;arr2&nbsp;=&nbsp;<span class="constructor">Array</span>.map&nbsp;f&nbsp;arr&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;count_some&nbsp;arr&nbsp;=&nbsp;<span class="constructor">Array</span>.fold_left&nbsp;(<span class="keyword">fun</span>&nbsp;n&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">function</span>&nbsp;<span class="constructor">None</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;n&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Some</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;n+1)&nbsp;0&nbsp;arr2&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;find_some&nbsp;arr&nbsp;=&nbsp;<span class="constructor">Array</span>.fold_left&nbsp;(<span class="keyword">fun</span>&nbsp;v&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">function</span>&nbsp;<span class="constructor">None</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;v&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Some</span>&nbsp;v2&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Some</span>&nbsp;v2)&nbsp;<span class="constructor">None</span>&nbsp;arr2&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">match</span>&nbsp;(count_some&nbsp;arr,&nbsp;find_some&nbsp;arr)&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;0,&nbsp;<span class="constructor">None</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;[||]<br>
+&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;_,&nbsp;<span class="constructor">None</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">assert</span>&nbsp;<span class="keyword">false</span><br>
+&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;n,&nbsp;<span class="constructor">Some</span>&nbsp;v_default&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;res&nbsp;=&nbsp;<span class="constructor">Array</span>.make&nbsp;n&nbsp;v_default&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;j&nbsp;=&nbsp;ref&nbsp;0&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Array</span>.iter&nbsp;(<span class="keyword">function</span>&nbsp;<span class="constructor">None</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;()&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Some</span>&nbsp;v&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;res.(!j)&lt;-v;&nbsp;j:=&nbsp;!j+1)&nbsp;arr2;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;res<br>
+<br>
+<span class="comment">(*&nbsp;encore&nbsp;une&nbsp;autre&nbsp;solution,&nbsp;qui&nbsp;ne&nbsp;suit&nbsp;pas&nbsp;les&nbsp;indications&nbsp;donnees&nbsp;dans&nbsp;le&nbsp;sujet&nbsp;*)</span><br>
+<span class="keyword">let</span>&nbsp;array_filter_map&nbsp;f&nbsp;arr&nbsp;=<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;arr2&nbsp;=&nbsp;<span class="constructor">Array</span>.map&nbsp;f&nbsp;arr&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;count_some&nbsp;arr&nbsp;=&nbsp;<span class="constructor">Array</span>.fold_left&nbsp;(<span class="keyword">fun</span>&nbsp;n&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">function</span>&nbsp;<span class="constructor">None</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;n&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Some</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;n+1)&nbsp;0&nbsp;arr2&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;i&nbsp;=&nbsp;ref&nbsp;(-1)&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;get_next&nbsp;()&nbsp;=&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;i&nbsp;:=&nbsp;!i&nbsp;+&nbsp;1;&nbsp;<span class="keyword">match</span>&nbsp;f&nbsp;arr.(!i)&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">None</span>&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;get_next&nbsp;()<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Some</span>&nbsp;v&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;v<br>
+&nbsp;&nbsp;<span class="keyword">in</span>&nbsp;<span class="constructor">Array</span>.init&nbsp;(count_some&nbsp;arr)&nbsp;(<span class="keyword">fun</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;get_next&nbsp;())<br>
+<br>
+<span class="comment">(*&nbsp;question&nbsp;6&nbsp;*)</span><br>
+<span class="comment">(*&nbsp;le&nbsp;code&nbsp;affiche&nbsp;adc;&nbsp;b&nbsp;n'est&nbsp;pas&nbsp;imprimé&nbsp;parce&nbsp;que&nbsp;le&nbsp;&amp;&amp;&nbsp;est&nbsp;paresseux.<br>
+&nbsp;&nbsp;&nbsp;d&nbsp;est&nbsp;imprimé&nbsp;avant&nbsp;c&nbsp;parce&nbsp;que&nbsp;l'évaluation&nbsp;des&nbsp;arguments&nbsp;en&nbsp;Caml&nbsp;se&nbsp;fait&nbsp;<br>
+&nbsp;&nbsp;&nbsp;de&nbsp;droite&nbsp;�&nbsp;&nbsp;gauche&nbsp;(il&nbsp;suffisait&nbsp;juste&nbsp;de&nbsp;dire&nbsp;que&nbsp;b&nbsp;n'est&nbsp;pas&nbsp;affiché&nbsp;pour<br>
+&nbsp;&nbsp;&nbsp;avoir&nbsp;les&nbsp;points&nbsp;�&nbsp;&nbsp;la&nbsp;question)&nbsp;*)</span><br>
+<br>
+<br>
+<span class="comment">(*&nbsp;question&nbsp;7&nbsp;*)</span><br>
+<br>
+<span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;andlist&nbsp;l&nbsp;=&nbsp;<span class="keyword">match</span>&nbsp;l&nbsp;<span class="keyword">with</span><br>
+<span class="keywordsign">|</span>&nbsp;[]&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">true</span><br>
+<span class="keywordsign">|</span>&nbsp;<span class="keyword">false</span>::_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">false</span><br>
+<span class="keywordsign">|</span>&nbsp;_::tl&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;andlist&nbsp;tl<br>
+<br>
+<br>
+<span class="comment">(*&nbsp;question&nbsp;8&nbsp;*)</span><br>
+<br>
+<span class="keyword">type</span>&nbsp;<span class="keywordsign">'</span>a&nbsp;binop_partial_application&nbsp;=<br>
+<span class="keywordsign">|</span>&nbsp;<span class="constructor">Result</span>&nbsp;<span class="keyword">of</span>&nbsp;<span class="keywordsign">'</span>a<br>
+<span class="keywordsign">|</span>&nbsp;<span class="constructor">Transformation</span>&nbsp;<span class="keyword">of</span>&nbsp;(<span class="keywordsign">'</span>a&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>a)<br>
+<br>
+<span class="keyword">type</span>&nbsp;<span class="keywordsign">'</span>a&nbsp;lazy_binop&nbsp;=&nbsp;<span class="keywordsign">'</span>a&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>a&nbsp;binop_partial_application<br>
+<br>
+<span class="keyword">let</span>&nbsp;lazy_product&nbsp;n&nbsp;=&nbsp;<span class="keyword">match</span>&nbsp;n&nbsp;<span class="keyword">with</span><br>
+<span class="keywordsign">|</span>&nbsp;0&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Result</span>&nbsp;0<br>
+<span class="keywordsign">|</span>&nbsp;_&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Transformation</span>&nbsp;(<span class="keyword">fun</span>&nbsp;m&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;n&nbsp;*&nbsp;m)<br>
+<br>
+<br>
+<span class="comment">(*&nbsp;question&nbsp;9&nbsp;*)</span><br>
+<br>
+<span class="keyword">let</span>&nbsp;fun_of_lazy_binop&nbsp;op&nbsp;x&nbsp;y&nbsp;=&nbsp;<span class="keyword">match</span>&nbsp;op&nbsp;x&nbsp;<span class="keyword">with</span><br>
+<span class="keywordsign">|</span>&nbsp;<span class="constructor">Result</span>&nbsp;v&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;v<br>
+<span class="keywordsign">|</span>&nbsp;<span class="constructor">Transformation</span>&nbsp;f&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;f&nbsp;y<br>
+<br>
+<span class="comment">(*&nbsp;question&nbsp;10&nbsp;*)</span><br>
+<br>
+<span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;lazy_reduce&nbsp;plus&nbsp;zero&nbsp;l&nbsp;=&nbsp;<span class="keyword">match</span>&nbsp;l&nbsp;<span class="keyword">with</span><br>
+<span class="keywordsign">|</span>&nbsp;[]&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;zero<br>
+<span class="keywordsign">|</span>&nbsp;hd::tl&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">begin</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">match</span>&nbsp;plus&nbsp;zero&nbsp;<span class="keyword">with</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Result</span>&nbsp;v&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;v<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;<span class="constructor">Transformation</span>&nbsp;f&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;lazy_reduce&nbsp;plus&nbsp;(f&nbsp;hd)&nbsp;tl<br>
+&nbsp;&nbsp;<span class="keyword">end</span><br>
+<br>
+<br>
+<span class="comment">(*&nbsp;question&nbsp;11&nbsp;*)</span><br>
+<br>
+<span class="keyword">module</span>&nbsp;<span class="keyword">type</span>&nbsp;<span class="constructor">PERSISTANT_MATRIX</span>&nbsp;=&nbsp;<span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;init:&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;t<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;dim:&nbsp;t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(int&nbsp;*&nbsp;int)<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;get:&nbsp;t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float&nbsp;<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;set:&nbsp;t&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;t<br>
+<span class="keyword">end</span><br>
+<br>
+<span class="keyword">module</span>&nbsp;<span class="constructor">ArrayBasedMatrix</span>&nbsp;:&nbsp;<span class="constructor">PERSISTANT_MATRIX</span>&nbsp;=&nbsp;<span class="keyword">struct</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t&nbsp;=&nbsp;float&nbsp;array&nbsp;array<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;init&nbsp;n&nbsp;m&nbsp;f&nbsp;=&nbsp;<span class="constructor">Array</span>.init&nbsp;n&nbsp;(<span class="keyword">fun</span>&nbsp;i&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Array</span>.init&nbsp;m&nbsp;(<span class="keyword">fun</span>&nbsp;j<span class="keywordsign">-&gt;</span>&nbsp;f&nbsp;i&nbsp;j))<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;dim&nbsp;mat&nbsp;=&nbsp;(<span class="constructor">Array</span>.length&nbsp;mat,&nbsp;<span class="constructor">Array</span>.length&nbsp;mat.(0))<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;get&nbsp;mat&nbsp;i&nbsp;j&nbsp;=&nbsp;mat.(i).(j)<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;set&nbsp;mat&nbsp;i&nbsp;j&nbsp;x&nbsp;=&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;(n,m)&nbsp;=&nbsp;dim&nbsp;mat&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;init&nbsp;n&nbsp;m&nbsp;(<span class="keyword">fun</span>&nbsp;i2&nbsp;j2&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keyword">if</span>&nbsp;(i,j)&lt;&gt;(i2,j2)&nbsp;<span class="keyword">then</span>&nbsp;mat.(i).(j)&nbsp;<span class="keyword">else</span>&nbsp;x)<br>
+<span class="keyword">end</span><br>
+<br>
+<span class="keyword">module</span>&nbsp;<span class="constructor">SparseMatrix</span>&nbsp;:&nbsp;<span class="constructor">PERSISTANT_MATRIX</span>&nbsp;=&nbsp;<span class="keyword">struct</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;t&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;width:&nbsp;int;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;height:&nbsp;int;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;non_null_cells:&nbsp;(int&nbsp;*&nbsp;int&nbsp;*&nbsp;float)&nbsp;list<br>
+&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;init&nbsp;n&nbsp;m&nbsp;f&nbsp;=&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;l&nbsp;=&nbsp;ref&nbsp;[]&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span>&nbsp;i=0&nbsp;<span class="keyword">to</span>&nbsp;n-1&nbsp;<span class="keyword">do</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">for</span>&nbsp;j=0&nbsp;<span class="keyword">to</span>&nbsp;m-1&nbsp;<span class="keyword">do</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;x&nbsp;=&nbsp;f&nbsp;i&nbsp;j&nbsp;<span class="keyword">in</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;x&nbsp;&lt;&gt;&nbsp;0.&nbsp;<span class="keyword">then</span>&nbsp;l&nbsp;:=&nbsp;(i,&nbsp;j,&nbsp;x)&nbsp;::&nbsp;!l<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">done</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">done</span>;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{width&nbsp;=&nbsp;m;&nbsp;height&nbsp;=&nbsp;n;&nbsp;non_null_cells&nbsp;=&nbsp;!l}<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;dim&nbsp;mat&nbsp;=&nbsp;(mat.height,&nbsp;mat.width)<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;get&nbsp;mat&nbsp;i&nbsp;j&nbsp;=&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;<span class="keyword">rec</span>&nbsp;iter&nbsp;=&nbsp;<span class="keyword">function</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;[]&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;0.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;(i2,&nbsp;j2,&nbsp;x)::_&nbsp;<span class="keyword">when</span>&nbsp;(i,j)=(i2,j2)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;x<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">|</span>&nbsp;_&nbsp;::&nbsp;tl&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;iter&nbsp;tl<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">in</span>&nbsp;iter&nbsp;mat.non_null_cells<br>
+<br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;set&nbsp;mat&nbsp;i&nbsp;j&nbsp;x&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{mat&nbsp;<span class="keyword">with</span>&nbsp;non_null_cells&nbsp;=&nbsp;(i,&nbsp;j,&nbsp;x)&nbsp;::&nbsp;mat.non_null_cells}&nbsp;<br>
+<br>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;une&nbsp;version&nbsp;un&nbsp;peu&nbsp;plus&nbsp;efficace&nbsp;de&nbsp;set&nbsp;qui&nbsp;maintient&nbsp;l'invariant<br>
+&nbsp;&nbsp;&nbsp;&nbsp;que&nbsp;toutes&nbsp;les&nbsp;valeurs&nbsp;nulles&nbsp;sont&nbsp;implicites&nbsp;*)</span><br>
+&nbsp;&nbsp;<span class="keyword">let</span>&nbsp;set&nbsp;mat&nbsp;i&nbsp;j&nbsp;x&nbsp;=<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">if</span>&nbsp;x&nbsp;&lt;&gt;&nbsp;0.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">then</span>&nbsp;{mat&nbsp;<span class="keyword">with</span>&nbsp;non_null_cells&nbsp;=&nbsp;(i,&nbsp;j,&nbsp;x)&nbsp;::&nbsp;mat.non_null_cells}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">else</span>&nbsp;{mat&nbsp;<span class="keyword">with</span>&nbsp;non_null_cells&nbsp;=&nbsp;<span class="constructor">List</span>.filter&nbsp;(<span class="keyword">fun</span>&nbsp;(i2,j2,_)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(i,j)&lt;&gt;(i2,j2))&nbsp;mat.non_null_cells}<br>
+<span class="keyword">end</span><br>
+<br>
+</code>
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>

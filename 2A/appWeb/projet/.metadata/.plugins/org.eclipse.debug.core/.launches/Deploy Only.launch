@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.jboss.ide.eclipse.as.core.server.startupConfiguration">
+    <stringAttribute key="org.jboss.ide.eclipse.as.core.launch.SHUTDOWN_COMMAND" value=""/>
+    <stringAttribute key="org.jboss.ide.eclipse.as.core.launch.STARTUP_COMMAND" value=""/>
+    <stringAttribute key="server-id" value="Deploy Only"/>
+</launchConfiguration>

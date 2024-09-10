@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="fr.n7.stl.util.Pair"/>
+    <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
+    <fullyQualifiedTypeName name="fr.n7.stl.tam.ast.Register"/>
+    <fullyQualifiedTypeName name="fr.n7.stl.block.ast.classes.ClasseInterface"/>
+    <fullyQualifiedTypeName name="fr.n7.stl.tam.ast.Fragment"/>
+    <fullyQualifiedTypeName name="java.io.PrintStream"/>
+    <fullyQualifiedTypeName name="fr.n7.stl.tam.ast.impl.TAMFactoryImpl"/>
+    <fullyQualifiedTypeName name="fr.n7.stl.block.ast.classElement.Attribut"/>
+    <fullyQualifiedTypeName name="fr.n7.stl.block.ast.classElement.Methode"/>
+    <fullyQualifiedTypeName name="fr.n7.stl.block.ast.classElement.Constructeur"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="fr.n7.stl.block.ast.element.ClasseInterface"/>
+    <fullyQualifiedTypeName name="fr.n7.stl.block.ast.classElement.ContentInterface"/>
+    <fullyQualifiedTypeName name="fr.n7.stl.block.ast.element.NormalClass"/>
+</qualifiedTypeNameHistroy>

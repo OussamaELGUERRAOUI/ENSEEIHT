@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<publish-info>
+  <server id="JBoss 4.0 Runtime Server1716680279953" path="publish5.dat"/>
+  <server id="WildFly 16.0 Runtime Server1716683229165" path="publish6.dat"/>
+  <server id="WildFly 23.0 Runtime Server1716685427974" path="publish7.dat"/>
+  <server id="WildFly 23.0 Runtime 1 Server1716692639511" path="publish8.dat"/>
+  <server id="Deploy Only" path="publish0.dat"/>
+  <server id="JBoss 5.1 Runtime Server1715353239769" path="publish1.dat"/>
+  <server id="Tomcat v7.0 Server at localhost" path="publish2.dat"/>
+  <server id="JBoss 6.x Runtime Server1716678984725" path="publish4.dat"/>
+  <server id="Tomcat v10.1 Server at localhost" path="publish3.dat"/>
+  <server id="WildFly 27.0 Runtime Server1716692242743" path="publish9.dat"/>
+</publish-info>
