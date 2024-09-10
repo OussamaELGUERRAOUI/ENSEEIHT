@@ -1,0 +1,52 @@
+CercleTest.java:31: error: ')' expected
+        C2 = new Cercle(A, BassertEquals(Color.blue, C1.getCouleur());
+                                                                     ^
+CercleTest.java:39: error: illegal start of expression
+	static void memesCoordonnees(String message, Point p1, Point p2) {
+	^
+CercleTest.java:53: error: invalid method declaration; return type required
+        memesCoordonnees("E12 : Centre de C1 incorrect", C, C1.getCentre());
+        ^
+CercleTest.java:53: error: illegal start of type
+        memesCoordonnees("E12 : Centre de C1 incorrect", C, C1.getCentre());
+                         ^
+CercleTest.java:54: error: invalid method declaration; return type required
+        assertEquals("E12 : Rayon de C1 incorrect",
+        ^
+CercleTest.java:54: error: illegal start of type
+        assertEquals("E12 : Rayon de C1 incorrect",
+                     ^
+CercleTest.java:56: error: invalid method declaration; return type required
+        assertEquals(Color.blue, C1.getCouleur());
+        ^
+CercleTest.java:56: error: <identifier> expected
+        assertEquals(Color.blue, C1.getCouleur());
+                               ^
+CercleTest.java:56: error: <identifier> expected
+        assertEquals(Color.blue, C1.getCouleur());
+                                              ^
+CercleTest.java:59: error: class, interface, or enum expected
+    @Test public void testerE13() {
+                 ^
+CercleTest.java:61: error: class, interface, or enum expected
+        assertEquals("E12 : Rayon de C1 incorrect",
+        ^
+CercleTest.java:63: error: class, interface, or enum expected
+        assertEquals(Color.yellow, C2.getCouleur() );
+        ^
+CercleTest.java:64: error: class, interface, or enum expected
+    }
+    ^
+CercleTest.java:66: error: class, interface, or enum expected
+    @Test public void testerE14 () {
+                 ^
+CercleTest.java:68: error: class, interface, or enum expected
+        assertEquals("E12 : Rayon de C1 incorrect",
+        ^
+CercleTest.java:70: error: class, interface, or enum expected
+        assertEquals(Color.blue, C3.getCouleur() );
+        ^
+CercleTest.java:71: error: class, interface, or enum expected
+    }
+    ^
+17 errors

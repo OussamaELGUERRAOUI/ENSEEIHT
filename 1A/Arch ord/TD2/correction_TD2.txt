@@ -1,0 +1,214 @@
+//PGCD:
+tq A#B faire
+   si A > B alors
+          A <- A -B
+   sinon
+           B <- B-A
+   finsi
+fintq
+pgcd <- A
+
+
+set A, %r1
+set B, %r2
+set pgcd
+ld [%r1], %r4
+ld [%r2], %r5
+
+tantque: cmp  %r4, %r5
+         beq  fintantque    
+         bleu AInfeqB
+AsupB:  sub  %r4, %r5, %r4
+         ba Finsi
+AInfEqB: sub %r5, %r4, %r5
+finSi :  ba tanque 
+fintq :  st %r4, [%r3] 
+
+--------------------------------------------------------------
+//factorielle
+fact <- 1
+i <- N
+tq i > 1 faire
+   fact <- fact*i
+   i <- i - 1
+ftq
+
+
+
+
+
+set fact, %r1
+set N, %r2
+set 1, %r3
+ld  [%r2], %r5
+
+tantque : %r, 1
+          bleu  finTantque
+          umulcc %r3, %r5, %r3
+          sub   %r5, 1, %r5
+            
+faintantque : st %r3, [%r1]
+stop :        ba stop 
+
+---------------------------------------------------------------------
+
+//somme d'elemnet d'un tableau
+
+somme <- 0
+pour i de 0 à N-1 faire
+   somme <- somme + tab[i]
+finpour
+
+somme <- 0
+tq i < N faire
+   somme <- somme + tab[i]
+   i <- i + 1
+fintq
+
+
+
+
+soome_tab :  set   0, %r1
+             set   0, %r2
+             set   tab, %r3
+tq:          cmp   %r2, N
+             bgeu  fintantque
+             ld [%r3 + %r2], %r4
+             add %r1, %r4, %r1
+             add %r2, 1, %r2
+             ba tq
+fintq:       set somme, %r5
+             st %r1, [%r5]
+stop:        ba stop
+
+somme :   .word 0
+tab :     .word(1,2,3,4,5,6,7,8,9)   
+             
+   
+
+
+
+
+
+
+
+set T, %r2 // Tableau T
+set n, %r3 // r3 = adresse de la longueur du tableau T
+ld [%r3], %r3 // r3 = longueur du tableau T
+clr %r4 // (r4 = i) = 0
+
+ld [%r2 + %r0], %r1 // max = T[0]
+loop: cmp %r4, %r3 // comparer i à n
+bgeu endloop // arrêt si i >= n
+ld [%r2 + %r4], %r5 // r5 = T[i]
+if: subcc %r1,%r5,%r0 // si r1 < T[i]
+bgeu end_if
+add %r5,%r0,%r1 // r1 = T[i]
+end_if:add %r4, 1, %r4 // i = i + 1
+ba loop // branchement à l'étiquette loop si la condition est vérifiée
+endloop: ba endloop
+
+
+
+tri 
+tab = 0x100
+n = 8
+
+set tab, %r1
+clr %r2    // indice i
+set n-1, %r2
+clr %r3    // indice j
+clr %r4    // TAB[j]
+clr %r5    // TAB[j+1]
+
+loop1:
+	set 0,%r3
+        	loop2:
+	ld [%r1+%r3], %r4
+	add %r3, 1, %r9
+	ld [%r1+%r9], %r5
+	cmp %r4, %r5
+	ble finsi
+	st %r4, [%r1+%r9]
+	st %r5, [%r1+%r3]
+
+finsi :
+	inc %r3
+	cmp %r3, %r2
+	blu loop2
+	dec %r2
+	set 0, %r8
+	cmp %r8, %r2
+	blu loop1   
+stop1:
+	ba stop1
+
+	.org tab
+	.word 6,2,9,4,1,17,6,-2
+
+
+cdible 
+
+
+Ex4 :				Crible
+
+tab = 0x100
+elim = 0x45
+n = 10
+
+	set tab, %r1
+	set elim, %r11
+
+	clr %r2    // indice i
+	clr %r3    // indice j
+	clr %r4    // TAB[i]
+	clr %r5    // TAB[j]
+	clr %r6    // elim[i]
+	clr %r7    // elim[j]
+	clr %r8    // x
+
+loop1:  
+	ld [%r11 + %r2], %r6
+	cmp %r0,%r6
+	blu finsi
+	ld [%r1 + %r2], %r8
+	add %r2,1,%r3        // j = i+1
+
+loop2:
+	ld [%r1 + %r3], %r5
+loop3:
+	cmp %r5,%r8
+	ble stop3
+	ld [%r1 + %r2], %r4
+	add %r8,%r4,%r8
+	ba loop3
+
+stop3:
+	cmp %r8, %r5
+	bne finsi2
+	set 1,%r9
+	st %r9,[%r11 + %r3]
+
+finsi2:       
+	inc %r3
+	cmp %r3, n
+	blu loop2
+
+finsi :
+	inc %r2
+	cmp %r2, n-1
+	blu loop1
+stop:
+	ba stop
+
+        .org tab
+        .word 3,4,6,12,13,15,16,20,23,37 
+        .org elim
+        .word 0,0,0,0,0,0,0,0,0,0
+
+ 
+
+ 
+    
+
+ 

@@ -1,0 +1,91 @@
+% Compte-rendu minimal du mini-projet SDA : LCA et TH
+% Auteur : ELGUERRAOUI Oussama
+% Groupe de TP : F
+
+
+**Consigne :** Vous devez écrire vos réponse à la place des ... en laissant
+une ligne vide avant et deux après votre réponse.
+
+**Remarque :** Ce document utilise le langage Markdown. On peut en engendrer
+une version PDF en faisant par exemple :
+
+~~~
+pandoc --toc -N -o LISEZ-MOI.pdf LISEZ-MOI.txt
+~~~
+
+
+# Exercice 1
+
+## Question 1.4
+
+
+**Indiquer les inconvénients/avantages d'une implantation par listes chaînées
+d'une SDA.**
+ --> les inconviénients : 
+-l'accés ou suppression d'un élèment loin au milieu ou la fin du liste est lent à cause de la complexité.
+_Il y a un probléme sur la gestion du mémoire, car engregsitrer il faut deux mots.
+
+--> Les avantages : 
+-l'allocation optimal du variable au niveau de la mémoire.
+- C'est plus pratique, parcequ'on ne connait pas le nombre de Cle et Donnee à enregistrer
+                    
+
+
+
+# Évaluation expérimentale.
+-- pour Borne = 10  Taille = 100
+=> LCA : Min = 5   Max = 15
+=> TH : Min = 6   Max = 13
+
+-- pour Borne = 100  Taille = 10000
+=> LCA : Min = 74   Max = 122
+=> TH : Min = 71   Max = 130
+
+-- pour Borne = 10000  Taille = 1000000
+=> LCA : Min = 61   Max = 141
+=> TH : Min = 64   Max = 145
+
+## Performance comparée de LCA et TH
+
+On obeserve en géneral que LCA et TH ont presque le meme interval d'échantillon. 
+Mais par raport au temps du compilation ou éxecution, on trouve que le temps du LCA est supérieur du temps de TH. Dans ce cas on favorise TH. 
+
+Je trouve que LCA est mieux que TH.
+
+
+## Qualité du générateur aléatoire
+
+Indiquer les conclusions quant à la qualité du générateur aléatoire.
+
+la qualité du générateur aléatoire est bon.
+
+
+
+# Principales difficultés rencontrées
+
+Indiquer ici les principales difficultés rencontrées lors de la réalisation de
+ce projet et comment elles ont été surmontées ou contournéeS.
+
+le probléme qu'il m'a bloqué est comment utilsiser un tableau avec des cases de types LCA et l'utilisation de fonction du hachage.
+Aprés j'ai demandé une question au prof pour L'utilisation des cases de types LCA.
+
+
+# Informations complémentaires
+
+Indiquer ici les informations qui pourraient aider à la compréhension du
+travail réalisé.
+
+Cette partie peut être vide.
+
+
+
+
+
+# Bilan personnel
+
+Quel bilan personnel tirez vous de ce mini-projet ?
+
+J'ai trouvé qu'il est plus pratique de réaliser un TH que LCA.parce que la complicité des tableau est inférieur des liste,
+de plus on peut accéder facilemnt à une donnée, juste avec la fonction de hachage pour determiner sa position. Par contre pour LCA, s'il y a beaucoup des données, il prendra du temps pour
+trouver une donnée. 
+

@@ -1,0 +1,48 @@
+private static void repondreQuestions(String nomFichier) throws IOException {
+    Iterable<PointDeVente> iterable = PointDeVenteUtils.fromXML(nomFichier);
+
+    // Construire un tableau associatif (pdvs) des points de vente avec un
+    // accès par identifiant
+    Map<Long, PointDeVente> pdvs = new HashMap<>();
+    for (PointDeVente pdv : iterable) {
+        pdvs.put(pdv.getIdentifiant(), pdv);
+    }
+
+    // Afficher le nombre de points de vente
+    int nbPointsDeVente = pdvs.size();
+    System.out.println("Nombre de points de vente : " + nbPointsDeVente);
+
+    // Construire l'ensemble (services) des services existants
+    Set<String> services = new HashSet<>();
+    for (PointDeVente pdv : pdvs.values()) {
+        services.addAll(pdv.getServices());
+    }
+
+    // Afficher le nombre de services existants
+    int nbServices = services.size();
+    System.out.println("Nombre de services existants : " + nbServices);
+
+    // Afficher tous les services existants
+    System.out.println("Services existants : " + services);
+
+    // Afficher le prix du gazole du point de vente d'identifiant 31075001 le 25 janvier 2017 à 10h
+    PointDeVente pdv = pdvs.get(31075001L);
+    NavigableMap<LocalDateTime, Integer> prixGazole = pdv.getPrix().get(Carburant.Gazole);
+    LocalDateTime dateRecherchee = LocalDateTime.of(2017, 1, 25, 10, 0);
+    Integer prix = prixGazole.get(dateRecherchee);
+    System.out.println("Prix du gazole du point de vente 31075001 le 25 janvier 2017 à 10h : " + prix + " centimes d'euros");
+
+    // Construire l'ensemble (villes) des villes ayant au moins un point de vente
+    Set<String> villes = new HashSet<>();
+    for (PointDeVente pdv2 : pdvs.values()) {
+        villes.add(pdv2.getVille());
+    }
+
+    // Afficher le nombre de villes offrant au moins un point de vente
+    int nbVilles = villes.size();
+    System.out.println("Nombre de villes offrant au moins un point de vente : " + nbVilles);
+
+    // Afficher le nombre moyen de points de vente par ville
+    double moyennePointsDeVenteParVille = (double) nbPointsDeVente / nbVilles;
+    System.out.println("Nombre moyen de points de vente par ville : " + moyennePointsDeVenteParVille);
+}

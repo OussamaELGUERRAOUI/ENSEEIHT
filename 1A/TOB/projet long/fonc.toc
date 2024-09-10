@@ -1,0 +1,13 @@
+\babel@toc {nil}{}\relax 
+\contentsline {section}{\numberline {1}Objectif général du projet}{4}{}%
+\contentsline {section}{\numberline {2}Description des fonctionnalités}{4}{}%
+\contentsline {subsection}{\numberline {2.1}Programmable}{4}{}%
+\contentsline {subsection}{\numberline {2.2}Personnes configurables}{4}{}%
+\contentsline {subsection}{\numberline {2.3}Phénomènes extérieurs}{4}{}%
+\contentsline {subsection}{\numberline {2.4}Panique}{4}{}%
+\contentsline {subsection}{\numberline {2.5}Ajout d'obstacles}{4}{}%
+\contentsline {subsection}{\numberline {2.6}Affichage de la pression physique}{4}{}%
+\contentsline {subsection}{\numberline {2.7}Rapports automatiques}{4}{}%
+\contentsline {section}{\numberline {3}Interface utilisateur envisagée}{4}{}%
+\contentsline {section}{\numberline {4}Scénarios}{4}{}%
+\contentsline {section}{\numberline {5}Difficultés}{4}{}%

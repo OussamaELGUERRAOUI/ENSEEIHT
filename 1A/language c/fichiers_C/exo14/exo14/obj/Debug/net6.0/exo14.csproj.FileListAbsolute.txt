@@ -1,0 +1,15 @@
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\bin\Debug\net6.0\exo14.exe
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\bin\Debug\net6.0\exo14.deps.json
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\bin\Debug\net6.0\exo14.runtimeconfig.json
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\bin\Debug\net6.0\exo14.dll
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\bin\Debug\net6.0\exo14.pdb
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\obj\Debug\net6.0\exo14.csproj.AssemblyReference.cache
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\obj\Debug\net6.0\exo14.GeneratedMSBuildEditorConfig.editorconfig
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\obj\Debug\net6.0\exo14.AssemblyInfoInputs.cache
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\obj\Debug\net6.0\exo14.AssemblyInfo.cs
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\obj\Debug\net6.0\exo14.csproj.CoreCompileInputs.cache
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\obj\Debug\net6.0\exo14.dll
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\obj\Debug\net6.0\refint\exo14.dll
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\obj\Debug\net6.0\exo14.pdb
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\obj\Debug\net6.0\exo14.genruntimeconfig.cache
+C:\1SN\S5\language c\fichiers_C\exo14\exo14\obj\Debug\net6.0\ref\exo14.dll

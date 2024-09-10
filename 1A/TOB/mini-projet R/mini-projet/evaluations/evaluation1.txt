@@ -1,0 +1,42 @@
+Date de l'évaluation : ven. 17 févr. 2023 21:38:50 CET
+
+Compilation de Cercle.java : OK.
+
+Types d'erreurs checkstyle : 19	(voir evaluation1/Cercle.checkstyle)
+
+Résultat de recherche de similitudes sur Cercle.java dans evaluation1/Cercle.sim
+
+JavaDoc automatique de Cercle : KO	(voir evaluation1/Cercle.javadoc)
+
+Un constructeur devrait appeler l'autre.
+
+Test SujetCercleTest : Tests run: 14,  Failures: 1	(voir evaluation1/SujetCercleTest.txt)
+    1) testerToString(SujetCercleTest)
+
+Test SujetCercleTest : Tests run: 14,  Failures: 1	(voir evaluation1/SujetCercleTest.txt)
+    1) testerToString(SujetCercleTest)
+
+Test RobustesseCercleTest : Tests run: 20,  Failures: 6	(voir evaluation1/RobustesseCercleTest.txt)
+    1) testerE12a(RobustesseCercleTest)
+        Exception: Unexpected exception, expected<AssertionError> but was<NullPointerException>
+    2) testerE12b(RobustesseCercleTest)
+        Exception: Unexpected exception, expected<AssertionError> but was<NullPointerException>
+    3) testerE13a(RobustesseCercleTest)
+        Exception: Unexpected exception, expected<AssertionError> but was<NullPointerException>
+    4) testerE13b(RobustesseCercleTest)
+        Exception: Unexpected exception, expected<AssertionError> but was<NullPointerException>
+    5) testerE14a(RobustesseCercleTest)
+        Exception: Unexpected exception, expected<AssertionError> but was<NullPointerException>
+    6) testerE14b(RobustesseCercleTest)
+        Exception: Unexpected exception, expected<AssertionError> but was<NullPointerException>
+
+Test FormeCercleTest : OK (12 tests)	(voir evaluation1/FormeCercleTest.txt)
+Test Forme2CercleTest : Tests run: 9,  Failures: 1	(voir evaluation1/Forme2CercleTest.txt)
+    1) testToString(Forme2CercleTest)
+        AssertionError: toString de Cercle doit utiliser toString de Point !
+
+
+ComplementsCercleTest : non modifiée (ok)
+
+Compilation de CercleTest.java : ERREUR !	(voir evaluation1/CercleTest.java.txt)
+CercleTest.java ne compile pas !!!

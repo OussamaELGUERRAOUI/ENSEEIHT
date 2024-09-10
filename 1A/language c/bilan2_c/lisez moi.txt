@@ -1,0 +1,18 @@
+Exercice 1
+
+1) int n = 10 : 8 - >37
+   int *p = NULL : 9 -> 37
+   int a = 5  : 13 -> 18
+   int n = 7 : 22 -> 25
+   double r = 11 : 30 -> 33
+
+2) oui dans la ligne 22, on a masqué n.
+
+3)non
+
+4)
+
+5) la valeur se change juste au bloc du ligne 13 au ligne 18 aprés il prend sa valeur initial declaré au ligne 9.
+
+6) toutes les valeurs de p afficher aprés la ligne 19 se changent.
+ 

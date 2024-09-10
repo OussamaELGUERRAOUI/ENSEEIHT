@@ -1,0 +1,9 @@
+Début de la vérification...
+[ERROR] Cercle.java:16:5: Commentaire Javadoc manquant. [JavadocVariable]
+[ERROR] Cercle.java:17:5: Commentaire Javadoc manquant. [JavadocVariable]
+[ERROR] Cercle.java:18:5: Commentaire Javadoc manquant. [JavadocVariable]
+[ERROR] Cercle.java:20:5: Commentaire Javadoc manquant. [JavadocVariable]
+[ERROR] Cercle.java:62: La première ligne de la Javadoc doit se terminer avec un point. [JavadocStyle]
+[ERROR] Cercle.java:186: Balise Javadoc @return manquante. [JavadocMethod]
+[ERROR] Cercle.java:197:6: Commentaire Javadoc manquant. [MissingJavadocMethod]
+Vérification terminée.

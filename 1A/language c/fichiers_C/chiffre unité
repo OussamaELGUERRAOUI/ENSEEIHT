@@ -1,0 +1,12 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <assert.h>
+#include <math.h>
+int chiffre_unites(int nombre)
+{
+    assert(nombre >= 0);
+
+    int r = nombre % 10 ;
+    printf("chiffre d'unites est : %d", r)
+    return EXIT_SUCCESS;
+}

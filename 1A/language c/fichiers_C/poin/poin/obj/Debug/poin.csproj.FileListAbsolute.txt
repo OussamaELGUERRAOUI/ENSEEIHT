@@ -1,0 +1,3 @@
+C:\1SN\S5\language c\fichiers_C\poin\poin\obj\Debug\poin.csproj.AssemblyReference.cache
+C:\1SN\S5\language c\fichiers_C\poin\poin\obj\Debug\poin.csproj.SuggestedBindingRedirects.cache
+C:\1SN\S5\language c\fichiers_C\poin\poin\obj\Debug\poin.csproj.CoreCompileInputs.cache
